@@ -1,5 +1,5 @@
 <?php
-class Bien {
+class Bien extends Model {
     private $type;// location,vente
     private $prix;
     private $ville;

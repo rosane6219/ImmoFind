@@ -14,7 +14,7 @@ class DAOUser{
   public function connect(){
 	  
 	try{
-		$this->connexion = new PDO("mysql:host=" . PDO_HOST . ";"."dbname=" . PDO_DBBASE, PDO_USER, PDO_PW);
+		//$this->connexion = new PDO("mysql:host=" . PDO_HOST . ";"."dbname=" . PDO_DBBASE, PDO_USER, PDO_PW);
 	}catch (PDOException $e){
 		print "Erreur !: " . $e->getMessage() . "<br/>";
 		die();
@@ -29,6 +29,7 @@ class DAOUser{
        $this->adresse = $a;
   }*/
 
+  /*
   //version simplifiée d'une dao avec une méthode add et des parametres nommés et bindValue
   public function add() {
       
@@ -93,7 +94,7 @@ class DAOUser{
 	}
     }
   
-    
+    */
   
    
 }

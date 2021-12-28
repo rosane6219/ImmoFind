@@ -14,7 +14,7 @@ class DAOUser{
   public function connect(){
 	  
 	try{
-		$this->connexion = new PDO("mysql:host=" . PDO_HOST . ";"."dbname=" . PDO_DBBASE, PDO_USER, PDO_PW);
+		//$this->connexion = new PDO("mysql:host=" . PDO_HOST . ";"."dbname=" . PDO_DBBASE, PDO_USER, PDO_PW);
 	}catch (PDOException $e){
 		print "Erreur !: " . $e->getMessage() . "<br/>";
 		die();
@@ -30,6 +30,7 @@ class DAOUser{
   }*/
 
   //version simplifiée d'une dao avec une méthode add et des parametres nommés et bindValue
+  /*
   public function add() {
       
 	try{
@@ -45,7 +46,7 @@ class DAOUser{
         ':descriptif' => $this->bien->getDescriptif(),
         ':dateModif' => $this->bien->getDate(),
 		);
-		$sth = $this->connexion->prepare( $query );
+		//$sth = $this->connexion->prepare( $query );
 		$res=$sth->execute( $data );
 		$this->connexion = null;
 		return $res;
@@ -71,6 +72,7 @@ class DAOUser{
 		print "Erreur !: " . $e->getMessage() . "<br/>";
 		die();
 	}
+	
   }
   
     public function update() {
@@ -88,10 +90,10 @@ class DAOUser{
             ':descriptif' => $this->bien->getDescriptif(),
             ':dateModif' => $this->bien->getDate(),
 		);
-		$sth = $this->connexion->prepare( $query );
-		$res=$sth->execute( $data );
+		//$sth = $this->connexion->prepare( $query );
+	//	$res=$sth->execute( $data );
 		$this->connexion = null;
-		return $res;
+		//return $res;
 	}catch (PDOException $e){
 		print "Erreur !: " . $e->getMessage() . "<br/>";
 		die();
@@ -99,7 +101,7 @@ class DAOUser{
     }
   
     
-  
+  */
    
 }
 ?>
