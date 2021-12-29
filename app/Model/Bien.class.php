@@ -18,6 +18,7 @@ class Bien extends Model {
         $this->descriptif = $d;
         $this->dateModif = $m;
     }
+    
    
     public function getType(){return $this->type;}
     public function getPrix(){return $this->prix;}

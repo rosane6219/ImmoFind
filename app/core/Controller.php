@@ -38,10 +38,10 @@ class Controller{
     public function loadModel($name){
         $file = ROOT.DS.'Model'.DS.$name.'.class.php';
         require_once($file);
-        if (isset($this->$name)){
+        if (!isset($this->$name)){
             $this->$name = new $name();
         }else{
-            echo 'pas chargé ';
+            echo 'Déjà chargé';
         }
     }
 }

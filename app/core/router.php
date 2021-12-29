@@ -17,7 +17,6 @@ class Router
         $request->action = isset($params[1]) ? $params[1] : 'index';
         //print_r($r);
         $request->params = array_slice($params, 2);
-
         return true;
     }
 }

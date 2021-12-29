@@ -8,7 +8,7 @@ class PageController extends Controller{
         $this->render('accueil');
     }
 
-    public function view (){
+    /*public function view (){
         //$this->set('phrase', $name);
         
         $this->set(array(
@@ -16,9 +16,15 @@ class PageController extends Controller{
             'name' => 'Rosane'
         ));
 
-        $this->render('index');
-        
+        $this->render('index'); 
+    }*/
 
+    public function view($id){
+        $this->loadModel('Collaborateur');
+        $test = $this->Collaborateur->findFirst(array(
+            'condition' => 'id=2'
+        ));
+        //print_r($test);
+        $this->set('Collaborateur',$test);
     }
-
 }
