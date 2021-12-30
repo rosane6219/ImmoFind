@@ -7,7 +7,7 @@ class Request{
     {
         $this->url = $_SERVER['PATH_INFO'];
         // url tapé par user $this->request->url; 
-        
+        //print_r($_SERVER);
     }
 }
 ?>

@@ -1,6 +1,6 @@
 <?php
 //inclure les fichiers necessaire pour le fonctionement du projet
-//require '../app/init.php'; 
+
 define('WEBROOT', dirname(__File__));
 define('ROOT', dirname(WEBROOT));
 define('DS',DIRECTORY_SEPARATOR);

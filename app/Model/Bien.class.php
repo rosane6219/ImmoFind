@@ -1,5 +1,6 @@
 <?php
 class Bien extends Model {
+    /*
     private $type;// location,vente
     private $prix;
     private $ville;
@@ -35,6 +36,7 @@ class Bien extends Model {
     public function setTitre($ti){  $this->titre = $ti;}
     public function setDescptif($d){  $this->descriptif = $d;}
     public function setDate($m){  $this->dateModif = $m;}
+    */
 }
 
 ?>
