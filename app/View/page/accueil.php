@@ -10,10 +10,10 @@
 <body>
     <div id="banderolle">
         <div class="images"> <!-- ici il faut choisir les images souhaitées -->
-            <img src="" alt=""> 
-            <img src="" alt="">
-            <img src="" alt="">
-            <img src="" alt="">
+            <img src="../../image/contact-us.png" alt="contact"> 
+            <img src="../../image/agence.png" alt="agence">
+            <img src="../../image/bien1.jpg" alt="bien 1">
+            <img src="../../image/bien2.jpg" alt="bien 2">
         </div>
     </div>
 

@@ -4,11 +4,11 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: darkgrey;
+  background-color: rgb(107, 106, 106);
 }
 
 #banderolle {
-  width: 1000px;
+  width: 600px;
   overflow: hidden;
   border: 2px solid black;
 }
