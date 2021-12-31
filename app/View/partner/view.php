@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="../css/main.css">
+
 <div>
     <?php $title_layout = $page->nom ?>
     <h1>Nos Partenaires</h1>
