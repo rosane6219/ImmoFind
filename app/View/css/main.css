@@ -32,3 +32,37 @@ body {
   align-items: center;
   height: 100vh;
 }
+
+#banderolle {
+  width: 600px;
+  overflow: hidden;
+  position: sticky;
+  top: 0;
+  left: 200px;
+  /*border: 2px solid black;*/
+}
+
+.images {
+  display: flex;
+  animation-duration: 20s;
+  animation-name: imagesBande;
+  animation-iteration-count: infinite;
+}
+
+@keyframes imagesBande {
+  0% {
+    transform: translateX(0); /*image 1*/
+  }
+  25% {
+    transform: translateX(-600px); /*image 2*/
+  }
+  50% {
+    transform: translateX(-1200px); /*image 3*/
+  }
+  75% {
+    transform: translateX(-1800px); /*image 4*/
+  }
+  100% {
+    transform: translateX(0); /*image 1*/
+  }
+}

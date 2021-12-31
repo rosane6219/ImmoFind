@@ -27,7 +27,7 @@ class Controller{
         require($view);
         $content_for_layout = ob_get_clean();
         ob_start();
-        require ROOT.DS.'View'.DS.'css'.DS.'banderole.css';
+        require ROOT.DS.'View'.DS.'css'.DS.'main.css';
         $style_for_content = ob_get_clean();
         require ROOT.DS.'View'.DS.'layout'.DS.$this->layout.'.php';
         $this->rendered = true;
