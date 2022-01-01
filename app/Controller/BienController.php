@@ -5,19 +5,25 @@ class BienController extends Controller{
     
 
     public function index() {
-        $this->render('accueil');
+        $this->loadModel('Bien');
+        //print_r($test);
+        //$this->set('test',$test);
+        $d['pages']= $this->Bien->find(array());//select *
+        $this->set($d);
+        $this->render('view');
+    }
+    
+    public function create(){
+        $this->render('createBien');
     }
 
-    /*public function view (){
-        //$this->set('phrase', $name);
-        
-        $this->set(array(
-            'phrase' => 'Je taime très fort',
-            'name' => 'Rosane'
-        ));
+    public function modify(){
+        $this->render('modifBien');
+    }
 
-        $this->render('index'); 
-    }*/
+    public function search(){
+        $this->render('recherche');
+    }
 
     public function view($id){
         $this->loadModel('Bien');

@@ -18,19 +18,34 @@
         </div>
     </div>
 
-    <div id="boutonAcceuil">
-        <a href="">Notre agence</a> &nbsp;
-        <a href="">Recherche</a> &nbsp;
-        <a href="">Se connecter</a> &nbsp;
-    </div>  
+     
     
     <div>
         <p id="laUne">Les nouveautés de notre agence</p>
+        <h1>Nos Biens</h1>
+    <div class="" id="myTopnav">
+        <ul>
+            
+            <?php foreach ($pages as $b) : ?>
+                <li>
+                <h2> <?php echo $b->titre; ?></h2>
+                 <?php
+                        echo $b->type;
+                        echo $b->prix;
+                        //echo $b->descrption;
+                        echo $b->ville;
+                        //echo $b->codepostal;
+                        // $b->modif;
+                        ?>
+               <a href="<?php echo BASE_URL . '/bien/view/' . $b->id ?>" title=""> Lire la suite</a>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+        </a>
+    </div>
     </div>
 
-    <div id="aide">
-        <a href="">Nous contacter</a>
-    </div>
+   
 
 </body>
 </html>

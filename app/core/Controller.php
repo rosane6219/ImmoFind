@@ -17,9 +17,9 @@ class Controller{
         if($this->rendered) { return false; }
         extract($this->vars);
         if (strpos($view,'/')===0){
-            $view = ROOT.DS.'view'.$view.'.php';
+            $view = ROOT.DS.'View'.$view.'.php';
         }else{
-            $view = ROOT.DS.'view'.DS.$this->request->controller.DS.$view.'.php';
+            $view = ROOT.DS.'View'.DS.$this->request->controller.DS.$view.'.php';
         }
         //$view = ROOT.DS.'View'.DS.$this->request->controller.DS.$view.'.php';
         

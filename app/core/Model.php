@@ -5,6 +5,7 @@ class Model {
     public $conf = 'default';
     public $table = false ;
     public $db;
+    public $primarykey = 'id';
 
     public function __construct()
     {   
@@ -42,8 +43,20 @@ class Model {
     //******************SEARCH*******************//
     public function find($req){// $req = null
 
-        $sql = 'SELECT * FROM '.$this->table.' as '.get_class($this). ' ';//this->table contient le nom de la table dans la BDD
+        $sql = 'SELECT ';//this->table contient le nom de la table dans la BDD
         
+        if (isset($req['fields'])){
+            if (is_array($req['fields'])){
+                $sql .= implode(',', $req['fields']);//concatenation
+            }else{
+                $sql .= $req['fields'];
+            }
+        }else {
+            $sql .= ' * ';
+        }
+
+        $sql .= 'FROM '.$this->table.' as '.get_class($this). ' ';
+
         // construction de la condition
         //print_r($req['condition']);
         if(isset($req['condition'])) {
@@ -61,6 +74,18 @@ class Model {
                 }
                 $sql .= implode(' AND ',$cond);
             }   
+        }
+        if (isset($req['limit'])){
+              $sql .= 'LIMIT '.$req['limit'];
+        }
+        if (isset($req['orderby'])){//ordre compte fait attention à comment tu mets les attributs
+            $sql .= ' ORDER BY ';
+            if (is_array($req['orderby'])){
+                $sql .= implode(',', $req['orderby']);//concatenation
+            }else{
+                $sql .= $req['orderby'].' ';
+            }
+            $sql .= $req['order'];
         }
         //die($sql);
         $pre = $this->db->prepare($sql);
@@ -78,7 +103,7 @@ class Model {
         
         // construction de la condition
         //print_r($req['condition']);
-        if(isset($req['condition'])) {
+        if(isset($req['condition'])) { 
             //$sql .= 'WHERE '.$req['condition'];
             $sql .= 'WHERE ';
             if (!is_array($req['condition'])){
@@ -99,5 +124,13 @@ class Model {
         $pre->execute();
         return $pre->fetchAll((PDO::FETCH_OBJ));
         die($this->table);
+    }
+
+    //******************************* */
+    public function findCount($condi){
+        $this->find(array(
+            'fields' => 'COUNT('.$this->primarykey.')',
+            'condition' => $condi
+        ));
     }
 }
