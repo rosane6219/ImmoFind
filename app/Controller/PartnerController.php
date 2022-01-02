@@ -2,7 +2,12 @@
 
 class PartnerController extends Controller{
  
-    
+    public function index(){
+        $this->loadModel('Partenaire');
+        $d['pages']= $this->Partenaire->find(array());//select *
+        $this->set($d);
+    }
+
     public function view($id=null){
         $this->loadModel('Partenaire');
         $d['page'] = $this->Partenaire->findFirst(array(

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
-       
+  <!--    si on veut faire la pagination : video 4 a peu près minute 22-->   
 <h2>Recherche d'un bien :</h2>
     
     <form action="#" mehtod="GET">

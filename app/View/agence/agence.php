@@ -12,8 +12,8 @@
 
     <div id="boutonAgence">
         <ul>
-            <li>Accédez à la liste de nos collaborateur en cliquant <a href="">ici !</a></li>
-            <li>Accédez à la liste de nos partenaires en cliquant <a href="">ici !</a></li>
+            <li>Accédez à la liste de nos collaborateurs en cliquant <a href="<?php echo Router::url("collabo/index");?>">ici !</a></li>
+            <li>Accédez à la liste de nos partenaires en cliquant <a href="<?php echo Router::url("partner/index");?>">ici !</a></li>
         </ul>
     </div>
     

@@ -5,7 +5,9 @@ class CollaboController extends Controller{
     
 
     public function index() {
-        $this->render('accueil');
+        $this->loadModel('Collaborateur');
+        $d['pages'] = $this->Collaborateur->find(array());
+        $this->set($d);
     }
 
     public function view($id){

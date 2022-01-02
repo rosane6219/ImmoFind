@@ -11,5 +11,5 @@
         <?php echo $page->codepostal; ?> <br>
         <?php echo $page->modif; ?> <br>
     </p>
-
+    <!--?php  debug($page);?-->
 </div>

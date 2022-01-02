@@ -18,15 +18,17 @@
     <title> <?php echo isset($title_layout) ? $title_layout : 'ImmoFind'; ?></title>
     <h1> la phrase acceuil : <b>Agence Immobilliere</b> </h1>
     <div id="boutonAcceuil">
-        <a href="<?php echo BASE_URL.'/agence/agence' ?>">Notre agence</a> &nbsp;
-        <a href="">Recherche</a> &nbsp;
-        <a href="">Se connecter</a> &nbsp;
+        <a href="<?php echo Router::url("accueil/index");?>">Accueil</a> &nbsp;
+        <a href="<?php echo Router::url("agence/agence");?>">Notre agence</a> &nbsp;
+        <a href="<?php echo Router::url("bien/search");?>">Recherche</a> &nbsp;
+        <a href="<?php echo Router::url("connexion/connect");?>">Se connecter</a> &nbsp;
+        <a href="<?php echo Router::url("contact/contact");?>">Nous contacter</a>
     </div>
 
     <?php echo  $content_for_layout; ?>
     
     <div id="aide">
-        <a href="<?php echo BASE_URL.'/contact/contact' ?>">Nous contacter</a>
+        
     </div>
 
 </body>

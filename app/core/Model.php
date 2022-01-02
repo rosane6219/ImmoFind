@@ -127,10 +127,10 @@ class Model {
     }
 
     //******************************* */
-    public function findCount($condi){
-        $this->find(array(
-            'fields' => 'COUNT('.$this->primarykey.')',
-            'condition' => $condi
+    public function findCount(){
+        $res = $this-> findFirst(array(
+            'fields' => 'COUNT('.$this->primarykey.') as count ',
         ));
+        return $res->count;
     }
 }
