@@ -66,5 +66,12 @@ class Controller{
         $c = new $controller(); 
         return $c->$action();
     }
+     
+    public function redirect($url,$code=null){
+        if ($code == 301){
+            header("HTTP/1.1 301 Moved Permantly");
+        }
+        header("Location: ".Router::url($url));
+    }
 }
 ?>

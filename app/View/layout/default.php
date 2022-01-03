@@ -25,6 +25,7 @@
         <a href="<?php echo Router::url("contact/contact");?>">Nous contacter</a>
     </div>
 
+    <?php echo $this->Session->flash();?>
     <?php echo  $content_for_layout; ?>
     
     <div id="aide">

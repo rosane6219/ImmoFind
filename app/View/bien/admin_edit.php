@@ -10,7 +10,7 @@
     
 <h2>Modifier l'annonce d'un bien :</h2>
     
-    <form action="#" mehtod="GET">
+    <form action="<?php echo Router::url('admin/bien/edit')?>" mehtod="GET">
         <div class="row">
             <div class="col">
                 <div class="form-group">

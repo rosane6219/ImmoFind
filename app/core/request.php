@@ -3,7 +3,8 @@ class Request{
 
     public $url;//quelle page a ete appelée
     public $page = 1;
-     
+    public $prefix = false;
+    
     function __construct()
     {
         $this->url = $_SERVER['PATH_INFO'];

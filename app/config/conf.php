@@ -13,6 +13,15 @@ class Conf
         );
 
 }
+/**
+ * Admin
+ */
+
+Router::prefix('cockpit','admin');
+
+/**
+ * User
+ */
 Router::connect('bien/:slug-:id','bien/view/id:([0-9]+)/slug:([a-z0-9\-]+)');//+= 1..* /* =0..* slug:([a-z0-9\-]+)=> a-z ou 0-9 ou -
 Router::connect('collaborateurs','collabo/index');
 Router::connect('partenaires','partner/index');
@@ -22,6 +31,7 @@ Router::connect('accueil','accueil/index');
 Router::connect('connexion','connexion/connect');
 Router::connect('inscription','connexion/inscription');
 Router::connect('recherche','bien/search');
+
 
 
 

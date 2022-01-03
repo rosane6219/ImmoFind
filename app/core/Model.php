@@ -12,11 +12,14 @@ class Model {
         //initialisation des var 
         if ($this->table === false ){
         $this->table = strtolower(get_class($this));// nom de la table doit etre = au nom de la classe 
+        //debug($this->table);
         }
         // cnx à la BDD
         $conf = Conf::$databases[$this->conf];
+        //debug($conf);
         if (isset(Model::$connections[$this->conf])) {
             $this->db = Model::$connections[$this->conf];
+            //debug($this->db);
             return true;
         }
        try{
@@ -25,10 +28,12 @@ class Model {
             $conf['password'],
             array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8')
         );
+        //print_r($pdo);
         $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_WARNING);//pour gerer lurl n'importe quoi qui fou la merde dans la requete sql du genre where blabla -_-
 
         Model::$connections[$this->conf] = $pdo;
         $this->db = $pdo;
+        //debug($this->db);
        }catch(PDOException $e){
            if (Conf::$debug >= 1) {
            die($e->getMessage());
@@ -132,5 +137,11 @@ class Model {
             'fields' => 'COUNT('.$this->primarykey.') as count ',
         ));
         return $res->count;
+    }
+    //****************************** */
+    public function delete($id){
+        $sql = "DELETE FROM '$this->table' WHERE '$this->primarykey' = $id";
+        //debug($sql);
+        $this->db->query($sql);
     }
 }
