@@ -6,6 +6,7 @@ class Model {
     public $table = false ;
     public $db;
     public $primarykey = 'id';
+    public $id;
 
     public function __construct()
     {   
@@ -140,8 +141,32 @@ class Model {
     }
     //****************************** */
     public function delete($id){
-        $sql = "DELETE FROM '$this->table' WHERE '$this->primarykey' = $id";
+        $sql = "DELETE FROM $this->table WHERE $this->primarykey = $id";
         //debug($sql);
         $this->db->query($sql);
+    }
+    //**************************** */
+    /*UPDATE public.bien
+	SET id=?, titre=?, typeannonce=?, prix=?, descrption=?, ville=?, codepostal=?, modif=?, typebien=?
+	WHERE <condition>; */
+    public function update($data){
+        $key = $this->primarykey;
+        $fields = array();
+        $d = array();
+        foreach($data as $k=>$v){
+            $fields[ ]= " $k=:$k";
+            $d[":$k"] = $v;
+             
+        }
+        if (isset($data->$key) && !empty($data->$key)){
+            $sql = 'UPDATE '.$this->table.' SET '.implode(',',$fields).', modif = NOW()'.' WHERE '.$key.'=:'.$key; 
+            debug($sql);
+            $this->id = $data->$key;
+        }
+        $pre = $this->db->prepare($sql);
+        $pre->execute($d);
+        return true;
+        //$pre->execute();
+       
     }
 }

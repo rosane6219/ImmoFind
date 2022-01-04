@@ -34,8 +34,8 @@ class Router
         if(in_array($params[0],array_keys(self::$prefixes))) {
             $request->prefix = self::$prefixes[$params[0]]; 
             array_shift($params);//decaler
-            debug($request);
-            debug($params);
+            //debug($request);
+            //debug($params);
         }
         $request->controller = $params[0];
         $request->action = isset($params[1]) ? $params[1] : 'index';

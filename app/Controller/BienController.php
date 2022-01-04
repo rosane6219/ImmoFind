@@ -58,7 +58,7 @@ class BienController extends Controller{
     function admin_delete($id){
         $this->loadModel('Bien');
         $this->Bien->delete($id);
-        $this->Session->setFlash('le contenu a bien été supprimé','succès');
+        $this->Session->setFlash(' le contenu a bien été supprimé','SUCCES');
         $this->redirect('admin/bien/list');
     }
 
@@ -66,11 +66,16 @@ class BienController extends Controller{
         $this->render('createBien');
     }
 
-    public function admin_edit($id){
+    public function admin_edit($id=null){
         $this->loadModel('Bien');
-        $d['bien'] = $this->Bien->findFirst(array(
+        if($this->request->data){
+            //debug($this->request->data);
+            $this->Bien->update($this->request->data);
+            $id = $this->Bien->id;
+        }
+        $this->request->data = $this->Bien->findFirst(array(
             'condition' => array('id' => $id)
         ));
-        $this->set($d);
+        //$this->set($d);
     }
 }

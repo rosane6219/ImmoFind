@@ -21,7 +21,7 @@
                     <li>
                         <h2> <?php echo $b->titre; ?></h2>
                         <?php
-                        echo $b->type;
+                        echo $b->typebien;
                         echo $b->prix;
                         //echo $b->descrption;
                         echo $b->ville;

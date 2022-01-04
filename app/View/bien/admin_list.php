@@ -18,7 +18,7 @@
                 <td>
                     <?php  ?>
                     <a href="<?php echo Router::url('admin/bien/edit/'.$v->id) ?>">modifier</a>
-                    <a onclick="return confirm('Voulez vous vraiment supprimer ce contenu?')" href="<?php echo Router::url('admin/bien/delete/'.$v->id) ?>">supprimer</a>
+                    <a onclick="return confirm('Voulez vous vraiment supprimer ce contenu?')" href="<?php echo Router::url('admin/bien/delete/'.$v->id) ;?>">supprimer</a>
                 </td>
             </tr>
         <?php endforeach?>

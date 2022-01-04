@@ -4,7 +4,8 @@
     <h1>Details du Bien</h1>
     
     <div><h3> <?php echo $page->titre ?> </h3></div> 
-    <p> <?php echo $page->type;  ?> <br>
+    <p> <?php echo $page->typeannonce;  ?> <br>
+        <?php echo $page->typebien;  ?> <br>
         <?php echo $page->prix; ?> <br>
         <?php echo $page->descrption; ?> <br>
         <?php echo $page->ville; ?> <br>

@@ -33,6 +33,7 @@ class Dispatcher{
         $controller = new $name($this->request);//new PageController (url)
          
         $controller->Session = new Session();
+        $controller->Form = new Form($controller);
         return $controller;
     }
 }

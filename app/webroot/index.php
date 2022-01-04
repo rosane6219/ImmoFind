@@ -12,5 +12,5 @@ require CORE.DS.'include.php';
 new Dispatcher();
 ?>
 <div style="position:fixed;bottom:0; background:#900;  line-height:30px; left:0; right:0; padding-left:10px;">
-<?php echo 'Page generée en '.round(microtime(true) -$debut,5).' secondes';?>
+<?php //echo 'Page generée en '.round(microtime(true) -$debut,5).' secondes';?>
 </div>
