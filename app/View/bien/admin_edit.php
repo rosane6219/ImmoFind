@@ -8,9 +8,9 @@
 </head>
 <body>
     
-<h2>Modifier l'annonce d'un bien :</h2>
+<h2>Editer l'annonce d'un bien :</h2>
     
-    <form action="<?php echo Router::url('admin/bien/edit')?>" method="post">
+    <form action="<?php echo Router::url('admin/bien/edit/'.$id)?>" method="post">
     <?php echo $this->Form->input('id','hidden');?>
         <div class="row">
             <!--div class="col">
@@ -86,7 +86,7 @@
                     <button onclick="location.href='./eleveConnection.php'" type="button">Annuler</button> <!--modifier href -->
             </div>
             <div class="action">
-                    <input type="submit"  value="Modifier l'annonce"> <!-- modifier action form -->
+                    <input type="submit"  value="Valider"> <!-- modifier action form -->
             </div>
         </div> 
     </form>

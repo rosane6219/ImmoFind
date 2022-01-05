@@ -1,6 +1,12 @@
 <div>
-    Liste des biens : en total <?php echo $total?>
+    <tr>
+        <td> Liste des biens : en total <?php echo $total?></td>
+        <td><a href="<?php echo Router::url('admin/bien/edit') ?>">Créer un bien</a></td>
+    </tr>
+   
 </div>
+
+
 <table>
     <thead>
         <tr>

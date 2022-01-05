@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ImmoFind</title>
+    <title>ImmoFind Administration</title>
     <!--link rel="stylesheet" href="../css/banderolle.css"-->
     <style type="text/css">
         <?php echo $style_for_content; ?>
@@ -16,22 +16,16 @@
 <body>
     
     <title> <?php echo isset($title_layout) ? $title_layout : 'ImmoFind'; ?></title>
-    <h1> la phrase acceuil : <b>Agence Immobilliere</b> </h1>
+    <h3>Administration</h3>
     <div id="boutonAcceuil">
-        <a href="<?php echo Router::url("accueil/index");?>">Accueil</a> &nbsp;
-        <a href="<?php echo Router::url("agence/agence");?>">Notre agence</a> &nbsp;
-        <a href="<?php echo Router::url("bien/search");?>">Recherche</a> &nbsp;
-        <a href="<?php echo Router::url("connexion/connect");?>">Se connecter</a> &nbsp;
-        <a href="<?php echo Router::url("contact/contact");?>">Nous contacter</a>
+        <a href="<?php echo Router::url("admin/bien/list");?>">Bien</a> &nbsp;
+        <a href="<?php echo Router::url("admin/collabo/list");?>">Collabo</a> &nbsp;
+        <a href="<?php echo Router::url("admin/partner/list");?>">Partenaires</a> &nbsp;
     </div>
 
     <?php echo $this->Session->flash();?>
     <?php echo  $content_for_layout; ?>
     
-    <div id="aide">
-        
-    </div>
-
 </body>
 
 </html>

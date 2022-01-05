@@ -37,6 +37,33 @@ class Bien extends Model {
     public function setDescptif($d){  $this->descriptif = $d;}
     public function setDate($m){  $this->dateModif = $m;}
     */
+    var $validate = array(
+        'titre' => array(
+            'rule' => 'noEmpty',
+            'message' => 'Vous devez préciser un titre'
+        ),
+        'url' => array(
+            'rule' => '([a-z0-9\-]+)',
+            'message' => "L'url n'est pas valide"
+        )
+    ); 
+
+    function validates($data){
+         $errors = array();
+         foreach($this->validate as $k=>$v){
+             if (!isset($data->$k)){
+                 $errors[$k] = $v['message'];
+             }else{
+                 if($v['rule'] == 'noEmpty' && empty($data->$k)){
+                     $errors[$k] = $v['message'];
+                 }elseif(!preg_match('/^'.$v['rule'].'$/',$data->$k)){
+                    $errors[$k] = $v['message'];
+                 }
+             }
+         }
+         debug($errors);
+         die();
+    }
 }
 
 ?>

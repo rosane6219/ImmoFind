@@ -10,7 +10,9 @@ class BienController extends Controller{
         //print_r($test);
         //$this->set('test',$test);
         $d['pages']= $this->Bien->find(array(
-            'limit' => $nb*($this->request->page)
+            'limit' => $nb*($this->request->page),
+            'orderby' => 'modif',
+            'order' => 'DESC'
         ));//select 
         $d['total'] = $this->Bien->findCount();
         $d['page'] = ceil($d['total']/$nb);
@@ -48,7 +50,9 @@ class BienController extends Controller{
         //$this->set('test',$test);
         $d['pages']= $this->Bien->find(array(
             'fields' => 'id,titre ',
-            'limit' => $nb*($this->request->page)
+            'limit' => $nb*($this->request->page),
+            'orderby' => 'modif',
+            'order' => 'DESC'
         ));//select 
         $d['total'] = $this->Bien->findCount();
         $d['page'] = ceil($d['total']/$nb);
@@ -62,20 +66,25 @@ class BienController extends Controller{
         $this->redirect('admin/bien/list');
     }
 
-    public function create(){
-        $this->render('createBien');
-    }
+   
 
     public function admin_edit($id=null){
         $this->loadModel('Bien');
+        $d['id'] = '';
         if($this->request->data){
-            //debug($this->request->data);
-            $this->Bien->update($this->request->data);
+            //if($this->Bien->validates($this->request->data)){
+            $this->Bien->save($this->request->data);
+            $this->Session->setFlash(' le contenu a bien été sauvegardé','SUCCES');
             $id = $this->Bien->id;
+            
+            
         }
-        $this->request->data = $this->Bien->findFirst(array(
-            'condition' => array('id' => $id)
-        ));
-        //$this->set($d);
+        if($id){
+            $this->request->data = $this->Bien->findFirst(array(
+                'condition' => array('id' => $id)
+            ));
+            $d['id'] = $id;
+        }
+        $this->set($d);
     }
 }

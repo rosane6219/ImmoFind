@@ -81,9 +81,6 @@ class Model {
                 $sql .= implode(' AND ',$cond);
             }   
         }
-        if (isset($req['limit'])){
-              $sql .= 'LIMIT '.$req['limit'];
-        }
         if (isset($req['orderby'])){//ordre compte fait attention à comment tu mets les attributs
             $sql .= ' ORDER BY ';
             if (is_array($req['orderby'])){
@@ -93,43 +90,19 @@ class Model {
             }
             $sql .= $req['order'];
         }
+        if (isset($req['limit'])){
+            $sql .= ' LIMIT '.$req['limit'];
+        }
+        //debug($sql);//die();
         //die($sql);
         $pre = $this->db->prepare($sql);
         $pre->execute();
         return $pre->fetchAll((PDO::FETCH_OBJ));
         die($this->table);
     }
+    //******************************* */
     public function findFirst($req){
         return current($this->find($req));//return le premier enregistrement qui est current 
-    }
-
-    //****************Insert******************************/
-    public function add($req){
-        $sql = 'INSERT INTO '.$this->table. 'VALUES'.get_class($this). ' ';//this->table contient le nom de la table dans la BDD
-        
-        // construction de la condition
-        //print_r($req['condition']);
-        if(isset($req['condition'])) { 
-            //$sql .= 'WHERE '.$req['condition'];
-            $sql .= 'WHERE ';
-            if (!is_array($req['condition'])){
-                $sql .=$req['condition'];
-            }else{
-                $cond = array();
-                foreach($req['condition'] as $k=>$v){
-                    if (!is_numeric($v)){
-                        $v= $this->db->quote($v);
-                    }
-                   $cond[] = "$k=$v";
-                }
-                $sql .= implode(' AND ',$cond);
-            }   
-        }
-        //die($sql);
-        $pre = $this->db->prepare($sql);
-        $pre->execute();
-        return $pre->fetchAll((PDO::FETCH_OBJ));
-        die($this->table);
     }
 
     //******************************* */
@@ -146,25 +119,43 @@ class Model {
         $this->db->query($sql);
     }
     //**************************** */
-    /*UPDATE public.bien
-	SET id=?, titre=?, typeannonce=?, prix=?, descrption=?, ville=?, codepostal=?, modif=?, typebien=?
-	WHERE <condition>; */
-    public function update($data){
+    
+    public function save($data){
         $key = $this->primarykey;
         $fields = array();
+        $champs = array();
+        $values =array();
         $d = array();
+        $this->id = $data->$key;
+        if (isset($data->$key)) {unset($data->$key);}
         foreach($data as $k=>$v){
             $fields[ ]= " $k=:$k";
             $d[":$k"] = $v;
-             
+            $champs[]="$k";
+            $values[]="'$v'";
         }
         if (isset($data->$key) && !empty($data->$key)){
             $sql = 'UPDATE '.$this->table.' SET '.implode(',',$fields).', modif = NOW()'.' WHERE '.$key.'=:'.$key; 
-            debug($sql);
-            $this->id = $data->$key;
+            //debug($sql);
+            
+            $action = 'update';
+        }else{
+            if (isset($data->$key)) {unset($data->$key);}
+        //$sql = 'INSERT INTO '.$this->table.' SET '.implode(',',$fields).', modif = NOW()'; 
+        $sql = 'INSERT INTO '.$this->table.' ('.implode(',',$champs).' ,modif)  VALUES ('.implode(',',$values).', NOW())';
+        $action = 'insert';
         }
+        //debug($data);
+        //debug($sql);
         $pre = $this->db->prepare($sql);
-        $pre->execute($d);
+        if ($action == 'update'){
+            $pre->execute($d);
+        }elseif($action == 'insert'){
+    
+            $pre->execute();
+            $this->id = $this->db->lastInsertId();
+        }
+       
         return true;
         //$pre->execute();
        
