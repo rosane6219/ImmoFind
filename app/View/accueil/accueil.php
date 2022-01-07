@@ -37,7 +37,7 @@
                         //echo $b->codepostal;
                         // $b->modif;
                         ?>
-               <a href="<?php echo Router::url("bien/view/id:{$b->id}/slug:{$b->titre}");?>" title=""> Lire la suite</a>
+               <a href="<?php echo Router::url("bien/view/id:$b->id/slug:$b->slug");?>" title=""> Lire la suite</a>
                 </li>
             <?php endforeach; ?>
         </ul>
@@ -45,7 +45,6 @@
     </div>
     </div>
 
-   
 
 </body>
 </html>

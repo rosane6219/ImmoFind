@@ -1,7 +1,8 @@
 <?php
 
-class User{
-    protected $nom;
+class User extends Model{
+    public $table = 'accout';
+    /*protected $nom;
     protected $prenom;
     protected $mail;
     protected $password ;
@@ -27,7 +28,7 @@ class User{
     public function setPrenom($p){ $this->prenom = $p;}
     public function setMail($v){  $this->mail = $v;}
     public function setPass($c){  $this->password = $c;}
-    public function setAdmin($ti){  $this->admin= $ti;}
+    public function setAdmin($ti){  $this->admin= $ti;}*/
    
 }
 ?>

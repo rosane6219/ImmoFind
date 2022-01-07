@@ -7,6 +7,8 @@ class Model {
     public $db;
     public $primarykey = 'id';
     public $id;
+    public $errors = array();
+    public $form;
 
     public function __construct()
     {   
@@ -48,7 +50,7 @@ class Model {
 
     //******************SEARCH*******************//
     public function find($req){// $req = null
-
+        //debug($req);
         $sql = 'SELECT ';//this->table contient le nom de la table dans la BDD
         
         if (isset($req['fields'])){
@@ -61,7 +63,7 @@ class Model {
             $sql .= ' * ';
         }
 
-        $sql .= 'FROM '.$this->table.' as '.get_class($this). ' ';
+        $sql .= 'FROM '.$this->table. ' ';//' as '.get_class($this).
 
         // construction de la condition
         //print_r($req['condition']);
@@ -102,6 +104,7 @@ class Model {
     }
     //******************************* */
     public function findFirst($req){
+        //debug($req);
         return current($this->find($req));//return le premier enregistrement qui est current 
     }
 

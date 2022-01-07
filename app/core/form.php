@@ -11,6 +11,12 @@ class Form
 
     public function input($name, $label, $options = array())
     {
+        $error = false;
+        $classError = '';
+        if(isset($this->errors[$name])){
+            $errors = $this->errors[$name];
+            $classError = 'error';
+        }
         if (!isset($this->controller->request->data->$name)){
             $value = '';
         }else {
@@ -19,7 +25,7 @@ class Form
         if ($label == 'hidden') {
             return '<input type="hidden" name="' . $name . '" value="' . $value . '" >';
         }
-        $html = '<div class="col">
+        $html = '<div class="'.$classError.'">
                         <div class="form-group">
                         <label>' . $label . '</label> ';
         $attr = ' ';
@@ -40,6 +46,11 @@ class Form
                 }
             }
             $html .= '</select>';
+        }elseif($options['type'] == 'password'){
+            $html .= '<input type="password" id="input_' . $name . '" name="' . $name . '" value="' . $value . '" ' . $attr . '>';
+        }
+        if($error){
+            $html .= '<span >'.$errors.'</span>';
         }
         $html .= '</div></div>';
         return $html;

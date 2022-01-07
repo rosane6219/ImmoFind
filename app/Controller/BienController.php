@@ -10,9 +10,10 @@ class BienController extends Controller{
         //print_r($test);
         //$this->set('test',$test);
         $d['pages']= $this->Bien->find(array(
-            'limit' => $nb*($this->request->page),
             'orderby' => 'modif',
-            'order' => 'DESC'
+            'order' => 'DESC',
+            'limit' => $nb*($this->request->page),
+           
         ));//select 
         $d['total'] = $this->Bien->findCount();
         $d['page'] = ceil($d['total']/$nb);
@@ -24,6 +25,7 @@ class BienController extends Controller{
     }
 
     public function view($id){
+        debug($id);
         $this->loadModel('Bien');
         $d['page'] = $this->Bien->findFirst(array(
             'condition' => array('id' => $id )
@@ -35,7 +37,11 @@ class BienController extends Controller{
         }
         //print_r($test);
         //$this->set('test',$test);
-        $d['pages']= $this->Bien->find(array());//select *
+        $d['pages']= $this->Bien->find(array(
+            'orderby' => 'modif',
+            'order' => 'DESC',
+            'limit' => '10',
+        ));//select *
         $this->set($d);
         
     }
@@ -44,13 +50,13 @@ class BienController extends Controller{
      * Fonction Backoffice
      */
     function admin_list(){
-        $nb = 10 ;
+        $nb = 1 ;
         $this->loadModel('Bien');
         //print_r($test);
         //$this->set('test',$test);
         $d['pages']= $this->Bien->find(array(
             'fields' => 'id,titre ',
-            'limit' => $nb*($this->request->page),
+            //'limit' => $nb*($this->request->page),
             'orderby' => 'modif',
             'order' => 'DESC'
         ));//select 
@@ -73,17 +79,19 @@ class BienController extends Controller{
         $d['id'] = '';
         if($this->request->data){
             //if($this->Bien->validates($this->request->data)){
+            $this->request->data->slug = str_replace('--','-',str_replace(' ','-',preg_replace("/[^a-zA-Z 0-9]+/","",strtolower($this->request->data->titre))));
             $this->Bien->save($this->request->data);
             $this->Session->setFlash(' le contenu a bien été sauvegardé','SUCCES');
             $id = $this->Bien->id;
+            //}else { $this->Session->setFlash(' Veuillez bien remplir tt les champs ','ECHEC');}
             
-            
-        }
-        if($id){
-            $this->request->data = $this->Bien->findFirst(array(
-                'condition' => array('id' => $id)
-            ));
-            $d['id'] = $id;
+        }else{
+            if($id){
+                $this->request->data = $this->Bien->findFirst(array(
+                    'condition' => array('id' => $id)
+                ));
+                $d['id'] = $id;
+            }
         }
         $this->set($d);
     }

@@ -21,7 +21,7 @@
         <a href="<?php echo Router::url("accueil/index");?>">Accueil</a> &nbsp;
         <a href="<?php echo Router::url("agence/agence");?>">Notre agence</a> &nbsp;
         <a href="<?php echo Router::url("bien/search");?>">Recherche</a> &nbsp;
-        <a href="<?php echo Router::url("connexion/connect");?>">Se connecter</a> &nbsp;
+        <a href="<?php echo Router::url("user/connexion");?>">Se connecter</a> &nbsp;
         <a href="<?php echo Router::url("contact/contact");?>">Nous contacter</a>
     </div>
 

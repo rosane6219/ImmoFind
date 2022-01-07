@@ -17,9 +17,12 @@ class Router
     static function parse($url, $request)
     {
         $url = trim($url, '/'); //eliminer les premiers // inutiles
-
+        //debug($url);
         foreach(Router::$routes as $v){
+            //debug($v);
             if(preg_match($v['catcher'],$url,$match)){
+                //debug($request);
+                //debug('yes');die();
                 $request->controller = $v['controller'];
                 $request->action = $v['action'];
                 $request->params = array();
@@ -29,7 +32,6 @@ class Router
                 return $request;
             }
         }
-
         $params = explode('/', $url);
         if(in_array($params[0],array_keys(self::$prefixes))) {
             $request->prefix = self::$prefixes[$params[0]]; 
@@ -42,6 +44,7 @@ class Router
         $request->params = array_slice($params, 2);
         return true;
     }
+
     static function connect($redir,$url){
         $r = array();
         $r['params'] = array();
@@ -73,9 +76,13 @@ class Router
     }
 
 
-    static  function url($url){
+    static function url($url){
+        //debug('here');
+        //debug($url);
         foreach(self::$routes as $v){
             if(preg_match($v['origin'],$url,$match)){
+                //debug('here');
+                //debug($v);die();
                 foreach ($match as $k=>$w){
                     if (!is_numeric($k)){
                         $v['redir'] = str_replace(":$k", $w,$v['redir']);

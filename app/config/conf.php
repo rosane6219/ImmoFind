@@ -27,9 +27,9 @@ Router::connect('collaborateurs','collabo/index');
 Router::connect('partenaires','partner/index');
 Router::connect('notre-agence','agence/agence');
 Router::connect('nous-contacter','contact/contact');
-Router::connect('accueil','accueil/index');
-Router::connect('connexion','connexion/connect');
-Router::connect('inscription','connexion/inscription');
+Router::connect('home','accueil/index');
+Router::connect('connexion','user/connexion');
+Router::connect('inscription','user/inscription');
 Router::connect('recherche','bien/search');
 
 

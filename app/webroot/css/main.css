@@ -49,6 +49,10 @@ body {
   animation-iteration-count: infinite;
 }
 
+.error {
+  color: red;
+}
+
 @keyframes imagesBande {
   0% {
     transform: translateX(0); /*image 1*/

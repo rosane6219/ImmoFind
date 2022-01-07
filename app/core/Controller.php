@@ -10,8 +10,9 @@ class Controller{
     {
         if($request){
             $this->request = $request;
+            require ROOT.DS.'config'.DS.'hook.php';
         }
-        require ROOT.DS.'config'.DS.'hook.php';
+
     }
 
     public function render($view){
@@ -28,7 +29,9 @@ class Controller{
         require($view);
         $content_for_layout = ob_get_clean();
         ob_start();
-        require ROOT.DS.'View'.DS.'css'.DS.'main.css';
+        require ROOT.DS.'webroot'.DS.'css'.DS.'main.css';
+        
+        //require ROOT.DS.'View'.DS.'css'.DS.'main.css';
         $style_for_content = ob_get_clean();
         require ROOT.DS.'View'.DS.'layout'.DS.$this->layout.'.php';
         $this->rendered = true;
@@ -44,10 +47,13 @@ class Controller{
     }
 
     public function loadModel($name){
-        $file = ROOT.DS.'Model'.DS.$name.'.class.php';
-        require_once($file);
         if (!isset($this->$name)){
+            $file = ROOT.DS.'Model'.DS.$name.'.class.php';
+            require_once($file);
             $this->$name = new $name();
+            if(isset($this->$name->form)){
+                $this->$name->Form = $this->Form;
+            }
         }else{
             echo 'Déjà chargé';
         }

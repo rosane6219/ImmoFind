@@ -11,9 +11,10 @@ class AccueilController extends Controller{
         //print_r($test);
         //$this->set('test',$test);
         $d['pages']= $this->Bien->find(array(
-            'limit' => $nb,
-            'orberby' => 'modif',
+            'orderby' => 'modif',
             'order' => 'DESC',
+            'limit' => $nb,
+            
         ));//select *
         if(empty($d['pages'])){//empty($test)
             $this->e404('Page introuvable');

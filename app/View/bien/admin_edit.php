@@ -71,7 +71,7 @@
             <!--div class="col">
                 <div class="form-group">
                     <label>Description</label> 
-                    <input type="text" name="description" value="<?php echo $bien->descrption?>">
+                    <input type="text" name="description" value="<?php echo $bien->titre?>">
                 </div>
             </div-->
             <?php echo $this->Form->input('descrption','Description ',array('type' => 'textarea','rows' => 5,'cols' => 10))?>
