@@ -4,87 +4,36 @@ class PanierController extends Controller{
  
     
 
-    public function index($userId) {
-        $nb = 2;
+    public function index($id) {
         $this->loadModel('Panier');
-        //print_r($test);
-        //$this->set('test',$test);
-        $d['pages']= $this->Panier->find(array(
-            'limit' => $nb*($this->request->page),
-            'orderby' => 'modif',
-            'order' => 'DESC'
-        ));//select 
-        $d['total'] = $this->Panier->findCount();
-        $d['page'] = ceil($d['total']/$nb);
-        $this->set($d);
-    }
-    
-    public function search(){
-        $this->render('recherche');
-    }
-
-    public function view($id){
-        $this->loadModel('Panier');
-        $d['page'] = $this->Panier->findFirst(array(
-            'condition' => array('id' => $id )
+        $d['panier']= $this->Panier->find(array(
+            'condition' => array('id_client' => $id),
+            'join' => array(
+                array('panier_bien', 'id_panier', 'id'),
+                array('bien', 'id', 'id_bien')
+            )
         ));
-        if(empty($d['page'])){//empty($test)
+        if(empty($d['panier'])){
             $this->e404('Page introuvable');
-        }else{
-            
         }
-        //print_r($test);
-        //$this->set('test',$test);
-        $d['pages']= $this->Panier->find(array());//select *
-        $this->set($d);
-        
-    }
- 
-    /**
-     * Fonction Backoffice
-     */
-    function admin_list(){
-        $nb = 10 ;
-        $this->loadModel('Panier');
-        //print_r($test);
-        //$this->set('test',$test);
-        $d['pages']= $this->Panier->find(array(
-            'fields' => 'id,titre ',
-            'limit' => $nb*($this->request->page),
-            'orderby' => 'modif',
-            'order' => 'DESC'
-        ));//select 
-        $d['total'] = $this->Panier->findCount();
-        $d['page'] = ceil($d['total']/$nb);
         $this->set($d);
     }
 
-    function admin_delete($id){
-        $this->loadModel('Panier');
+    public function delete($id){
+        $this->loadModel('PanierBien');
         $this->Panier->delete($id);
-        $this->Session->setFlash(' le contenu a Panier été supprimé','SUCCES');
-        $this->redirect('admin/Panier/list');
+        $this->Session->setFlash(' Le bien a été supprimé du panier','SUCCES');
+        $this->redirect('panier/list');
     }
 
-   
-
-    public function admin_edit($id=null){
-        $this->loadModel('Panier');
-        $d['id'] = '';
-        if($this->request->data){
-            //if($this->Panier->validates($this->request->data)){
-            $this->Panier->save($this->request->data);
-            $this->Session->setFlash(' le contenu a Panier été sauvegardé','SUCCES');
-            $id = $this->Panier->id;
-            
-            
-        }
-        if($id){
-            $this->request->data = $this->Panier->findFirst(array(
-                'condition' => array('id' => $id)
-            ));
-            $d['id'] = $id;
-        }
-        $this->set($d);
+    public function add($panierid, $bienid){
+        $this->loadModel('PanierBien');
+        $data = new stdClass();
+        $data->id_panier = $panierid;
+        $data->id_bien = $bienid;
+        $this->PanierBien->save($data);
+        $this->Session->setFlash(' Le bien a été ajouté dans le panier','SUCCES');
+        //$id = $this->PanierBien->id; 
+        //$this->set($data);
     }
 }

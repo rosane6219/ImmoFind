@@ -64,6 +64,14 @@ class Model {
         }
 
         $sql .= 'FROM '.$this->table. ' ';//' as '.get_class($this).
+ 
+        if(isset($req['join'])) {
+            for ($join = 0; $join < count($req['join']); $join++) {
+                $sql .= 'JOIN '.$req['join'][$join][0].' ON ';
+                if($join == 0) $sql .= $this->table.'.'.$req['join'][$join][2].'='.$req['join'][$join][0].'.'.$req['join'][$join][1];
+                else $sql .= $req['join'][$join-1][0].'.'.$req['join'][$join][2].'='.$req['join'][$join][0].'.'.$req['join'][$join][1];
+            }
+        }
 
         // construction de la condition
         //print_r($req['condition']);

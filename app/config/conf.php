@@ -31,6 +31,9 @@ Router::connect('home','accueil/index');
 Router::connect('connexion','user/connexion');
 Router::connect('inscription','user/inscription');
 Router::connect('recherche','bien/search');
+Router::connect('panier', 'panier/index/id:([0-9]+)')
+Router::connect('panier/:panierid-:bienid', 'panier/add/panierid:([0-9]+)/bienid:([0-9]+)')
+Router::connect('panier/:id', 'panier/delete/id:([0-9]+)')
 
 
 
