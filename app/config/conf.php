@@ -31,6 +31,7 @@ Router::connect('home','accueil/index');
 Router::connect('connexion','user/connexion');
 Router::connect('inscription','user/inscription');
 Router::connect('recherche','bien/search');
+Router::connect('home','user/deconnexion');
 
 
 

@@ -22,6 +22,7 @@
         <a href="<?php echo Router::url("admin/collabo/list");?>">Collabo</a> &nbsp;
         <a href="<?php echo Router::url("admin/partner/list");?>">Partenaires</a> &nbsp;
         <a href="<?php echo Router::url("home");?>">Voir le site</a> &nbsp;
+        <a href="<?php echo Router::url("user/deconnexion");?>">Se déconnecter</a> &nbsp;
     </div>
 
     <?php echo $this->Session->flash();?>

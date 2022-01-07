@@ -25,7 +25,6 @@ class BienController extends Controller{
     }
 
     public function view($id){
-        debug($id);
         $this->loadModel('Bien');
         $d['page'] = $this->Bien->findFirst(array(
             'condition' => array('id' => $id )
