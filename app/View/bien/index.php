@@ -29,6 +29,7 @@
                         // $b->modif;
                         ?>
                         <!--a href="<?php echo BASE_URL . '/bien/view/' . $b->id ?>" title=""> Lire la suite</a-->
+                        <!--<a href="<?php echo Router::url("panier/add/panierid:{TODO}/bienid:{$b->id}");?>" title="">Ajouter au panier</a>-->
                         <a href="<?php echo Router::url("bien/view/id:{$b->id}/slug:{$b->titre}");?>" title=""> Lire la suite</a>
 
                     </li>
