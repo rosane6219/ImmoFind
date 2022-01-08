@@ -10,7 +10,7 @@
     
 <h2>Editer l'annonce d'un bien :</h2>
     
-    <form action="<?php echo Router::url('admin/bien/edit/'.$id)?>" method="post">
+    <form action="<?php echo Router::url('admin/bien/edit/'.$id)?>" method="post" enctype="multipart/form-data">
     <?php echo $this->Form->input('id','hidden');?>
         <div class="row">
             <!--div class="col">
@@ -75,13 +75,14 @@
                 </div>
             </div-->
             <?php echo $this->Form->input('descrption','Description ',array('type' => 'textarea','rows' => 5,'cols' => 10))?>
-            <div class="col">
+            <!--<div class="col">
                 <div class="form-group">
                     
                     <label>image</label> 
                     <input type="text" name="url">
                 </div>
-            </div>
+            </div>-->
+            <?php echo $this->Form->input('image','Image', array('type' => 'file'))?>
             <div class="col">
                     <button onclick="location.href='./eleveConnection.php'" type="button">Annuler</button> <!--modifier href -->
             </div>

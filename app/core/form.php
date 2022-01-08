@@ -49,6 +49,9 @@ class Form
         }elseif($options['type'] == 'password'){
             $html .= '<input type="password" id="input_' . $name . '" name="' . $name . '" value="' . $value . '" ' . $attr . '>';
         }
+        elseif($options['type'] == 'file'){
+            $html .= '<input type="file" id="input_' . $name . '" name="' . $name . '" value="' . $value . '" ' . $attr . '>';
+        }
         if($error){
             $html .= '<span >'.$errors.'</span>';
         }
