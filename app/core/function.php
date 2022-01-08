@@ -13,3 +13,32 @@ function debug($var){
         echo '</pre>';
     }
 } 
+
+function uploadImage($file){
+    $validExtensions = array('.jpg', '.jpeg', '.gif', '.png');
+                if($_FILES['image']['error'] > 0) {
+                    $this->Session->setFlash(' Une erreur est survenue lors du transfert. ','ECHEC');
+                    return null;
+                }
+
+                $fileName = $_FILES['image']['name'];
+                $fileExt = '.'. strtolower(substr(strrchr($fileName, '.'), 1));
+
+                if(!in_array($fileExt, $validExtensions)){
+                    $this->Session->setFlash(' Le fichier n\'est pas une image. ','ECHEC');
+                    return null;
+                }
+
+                $tmpName = $_FILES['image']['tmp_name'];
+                $uniqueName = md5(uniqid(rand(), true));
+                $fileName = "uploads/". $uniqueName . $fileExt;
+                
+                if (!file_exists('uploads')) {
+                    mkdir('uploads', 0777, true);
+                }
+                
+                $result = move_uploaded_file($tmpName, $fileName);
+
+                if($result) return $fileName;
+                else return null;
+}
