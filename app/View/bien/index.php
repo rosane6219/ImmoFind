@@ -14,7 +14,7 @@
 
 
     <div>
-        <h1>Nos Biens</h1>
+        <h1>Nos biens</h1>
         <div class="" id="myTopnav">
             <ul>
                 <?php foreach ($pages as $b) : ?>
@@ -29,7 +29,10 @@
                         // $b->modif;
                         ?>
                         <!--a href="<?php echo BASE_URL . '/bien/view/' . $b->id ?>" title=""> Lire la suite</a-->
-                        <!--<a href="<?php echo Router::url("panier/add/panierid:{TODO}/bienid:{$b->id}");?>" title="">Ajouter au panier</a>-->
+                        <a href="<?php 
+                            if(isset($_SESSION['User'])) echo Router::url("panier/add/userid:{$_SESSION['User']->id}/bienid:{$b->id}"); else echo '#';?>" title="">
+                            <?php if(isset($_SESSION['User'])) echo 'Ajouter au panier'; ?>
+                        </a>
                         <a href="<?php echo Router::url("bien/view/id:{$b->id}/slug:{$b->titre}");?>" title=""> Lire la suite</a>
 
                     </li>

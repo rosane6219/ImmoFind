@@ -10,40 +10,40 @@
     
 <h2>Créez votre compte:</h2>
     
-    <form action="#" mehtod="GET">
+<form action="<?php echo Router::url('user/inscription')?>" method="post">
         <div class="row">
-            <div class="col">
+        <?php echo $this->Form->input('nom','Nom ')?>
+            <!--<div class="col">
                 <div class="form-group">
                     <label>Nom</label> 
                     <input type="text" name="nom">
                 </div>
-            </div>
-            <div class="col">
+            </div>-->
+            <?php echo $this->Form->input('prenom','Prenom ')?>
+            <!--<div class="col">
                 <div class="form-group">
                     <label>Prenom</label> 
                     <input type="text" name="prenom">
                 </div>
-            </div>
-            <div class="col">
+            </div>-->
+            <?php echo $this->Form->input('mail','Adresse e-mail ')?>
+            <!--<div class="col">
                 <div class="form-group">
                     <label>Adresse e-mail</label> 
                     <input type="text" name="email">
                 </div>
-            </div>
-            <div class="col">
+            </div>-->
+            <?php echo $this->Form->input('pass','Mot de passe ')?>
+            <!--<div class="col">
                 <div class="form-group">
                     <label>Mot de Passe</label> 
                     <input type="password" name="mdp">
                 </div>
-            </div>
-            <div class="col">
-                <div class="form-group">
-                    <label>Confirmer</label> 
-                    <input type="password" name="cfmdp">
-                </div>
-            </div>
+            </div>-->
             <br>
-            <input type="submit" name="createCompte" value="Créer mon compte"> <!-- modifier action du form -->
+            <div class="action">
+                    <input type="submit"  value="Valider"> <!-- modifier action form -->
+            </div>
         </div>
     </form>
 

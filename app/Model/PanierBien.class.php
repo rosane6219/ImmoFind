@@ -1,4 +1,5 @@
 <?php
 class PanierBien extends Model{
-    $this->primaryKey = 'id_bien';
+    public $primarykey = 'id_bien';
+    public $table = 'panier_bien';
 }

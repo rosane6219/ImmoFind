@@ -14,25 +14,36 @@ class PanierController extends Controller{
             )
         ));
         if(empty($d['panier'])){
-            $this->e404('Page introuvable');
+            $this->message('Panier vide');
         }
         $this->set($d);
     }
 
     public function delete($id){
+       // debug('delete');die();
         $this->loadModel('PanierBien');
-        $this->Panier->delete($id);
+        $this->PanierBien->delete($id);
         $this->Session->setFlash(' Le bien a été supprimé du panier','SUCCES');
-        $this->redirect('panier/list');
+        $this->redirect("panier/index/id:{$_SESSION['User']->id}");
     }
 
-    public function add($panierid, $bienid){
+    public function add($userid, $bienid){
+        $this->loadModel('Panier');
+        $d = $this->Panier->findFirst(array(
+            'condition' => array('id_client' => $userid),
+            'fields' => 'id '
+        ));
         $this->loadModel('PanierBien');
         $data = new stdClass();
-        $data->id_panier = $panierid;
+        $data->id_panier = $d->id;
         $data->id_bien = $bienid;
-        $this->PanierBien->save($data);
-        $this->Session->setFlash(' Le bien a été ajouté dans le panier','SUCCES');
+        if(empty($this->PanierBien->find(array('condition' => array('id_panier' => $d->id, 'id_bien' => $bienid))))) {
+            $this->PanierBien->save($data);
+            $this->Session->setFlash(' Le bien a été ajouté dans le panier','SUCCES');
+        } else {
+            $this->Session->setFlash(' Le bien existe deja dans le panier','SUCCES');
+        }
+        $this->redirect(pathinfo($_SERVER['HTTP_REFERER'],PATHINFO_BASENAME));
         //$id = $this->PanierBien->id; 
         //$this->set($data);
     }

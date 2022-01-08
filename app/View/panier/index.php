@@ -27,7 +27,7 @@
                         ?>
                         <!--a href="<?php echo BASE_URL . '/bien/view/' . $bien->id ?>" title=""> Lire la suite</a-->
                         <a href="<?php echo Router::url("panier/delete/id:{$bien->id}");?>" title="">Retirer du panier</a>
-                        <a href="<?php echo Router::url("bien/view/id:{$bien->id}/slug:{$bien->titre}");?>" title=""> Lire la suite</a>
+                        <a href="<?php echo Router::url("bien/view/id:{$bien->id}/slug:{$bien->slug}");?>" title=""> Lire la suite</a>
                     </li>
                 <?php endforeach; ?>
             </ul>

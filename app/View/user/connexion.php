@@ -33,7 +33,7 @@
     <button onclick="location.href='../../accueil.php'" type="button">Home</button> <!-- href a modifier --> 
     <a href="<?php echo Router::url("accueil/index");?>" title=""> Home</a>
     <br> <br>
-    <span>Vous n'avez pas encore de compte ?</span> <a href="<?php echo Router::url("connexion/inscription");?>">Créez-en un maintenant !</a>
+    <span>Vous n'avez pas encore de compte ?</span> <a href="<?php echo Router::url("user/inscription");?>">Créez-en un maintenant !</a>
 
 
 </body>

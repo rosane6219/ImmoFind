@@ -79,6 +79,7 @@ class BienController extends Controller{
         if($this->request->data){
             //if($this->Bien->validates($this->request->data)){
             $this->request->data->slug = str_replace('--','-',str_replace(' ','-',preg_replace("/[^a-zA-Z 0-9]+/","",strtolower($this->request->data->titre))));
+            $this->request->data->modif = date("Y-m-d");
             $this->Bien->save($this->request->data);
             $this->Session->setFlash(' le contenu a bien été sauvegardé','SUCCES');
             $id = $this->Bien->id;

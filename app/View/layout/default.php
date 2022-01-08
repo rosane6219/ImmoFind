@@ -16,12 +16,22 @@
 <body>
     
     <title> <?php echo isset($title_layout) ? $title_layout : 'ImmoFind'; ?></title>
-    <h1> la phrase acceuil : <b>Agence Immobilliere</b> </h1>
+    <h1> <b>ImmoFind</b> </h1>
     <div id="boutonAcceuil">
         <a href="<?php echo Router::url("accueil/index");?>">Accueil</a> &nbsp;
         <a href="<?php echo Router::url("agence/agence");?>">Notre agence</a> &nbsp;
         <a href="<?php echo Router::url("bien/search");?>">Recherche</a> &nbsp;
-        <a href="<?php echo Router::url("user/connexion");?>">Se connecter</a> &nbsp;
+        <a href="<?php if(!isset($_SESSION['User'])) echo Router::url("user/connexion"); else echo Router::url("user/logout");?>">
+            <?php 
+                if(!isset($_SESSION['User'])) echo 'Se connecter';
+                else echo 'Se déconnecter'
+            ?>
+        </a> &nbsp;
+        <a href="<?php if(isset($_SESSION['User'])) echo Router::url("panier/index/id:{$_SESSION['User']->id}"); else echo "#";?>">
+            <?php if(isset($_SESSION['User'])) 
+                echo 'Mon panier'
+            ?>
+        </a> &nbsp;
         <a href="<?php echo Router::url("contact/contact");?>">Nous contacter</a>
     </div>
 

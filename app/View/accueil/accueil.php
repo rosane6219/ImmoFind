@@ -37,6 +37,10 @@
                         //echo $b->codepostal;
                         // $b->modif;
                         ?>
+               <a href="<?php 
+                            if(isset($_SESSION['User'])) echo Router::url("panier/add/userid:{$_SESSION['User']->id}/bienid:{$b->id}"); else echo '#';?>" title="">
+                            <?php if(isset($_SESSION['User'])) echo 'Ajouter au panier'; ?>
+                        </a>         
                <a href="<?php echo Router::url("bien/view/id:$b->id/slug:$b->slug");?>" title=""> Lire la suite</a>
                 </li>
             <?php endforeach; ?>

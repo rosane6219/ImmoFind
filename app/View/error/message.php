@@ -1,6 +1,5 @@
 <div>
-    <h1>Error 404</h1>
-    <p> <?php echo $message ?> </p>
+    <h1> <?php echo $message ?> </h1>
 </div>
 <?php
 /*

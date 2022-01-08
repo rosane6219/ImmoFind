@@ -67,9 +67,9 @@ class Model {
  
         if(isset($req['join'])) {
             for ($join = 0; $join < count($req['join']); $join++) {
-                $sql .= 'JOIN '.$req['join'][$join][0].' ON ';
-                if($join == 0) $sql .= $this->table.'.'.$req['join'][$join][2].'='.$req['join'][$join][0].'.'.$req['join'][$join][1];
-                else $sql .= $req['join'][$join-1][0].'.'.$req['join'][$join][2].'='.$req['join'][$join][0].'.'.$req['join'][$join][1];
+                $sql .= ' JOIN '.$req['join'][$join][0].' ON ';
+                if($join == 0) $sql .= $this->table.'.'.$req['join'][$join][2].'='.$req['join'][$join][0].'.'.$req['join'][$join][1].' ';
+                else $sql .= $req['join'][$join-1][0].'.'.$req['join'][$join][2].'='.$req['join'][$join][0].'.'.$req['join'][$join][1]. ' ';
             }
         }
 
@@ -108,7 +108,7 @@ class Model {
         $pre = $this->db->prepare($sql);
         $pre->execute();
         return $pre->fetchAll((PDO::FETCH_OBJ));
-        die($this->table);
+        //die($this->table);
     }
     //******************************* */
     public function findFirst($req){
@@ -126,7 +126,7 @@ class Model {
     //****************************** */
     public function delete($id){
         $sql = "DELETE FROM $this->table WHERE $this->primarykey = $id";
-        //debug($sql);
+        //debug($sql);die();
         $this->db->query($sql);
     }
     //**************************** */
@@ -137,8 +137,10 @@ class Model {
         $champs = array();
         $values =array();
         $d = array();
-        $this->id = $data->$key;
-        if (isset($data->$key)) {unset($data->$key);}
+        if (isset($data->$key)) {
+            $this->id = $data->$key;
+            unset($data->$key);
+        }
         foreach($data as $k=>$v){
             $fields[ ]= " $k=:$k";
             $d[":$k"] = $v;
@@ -146,15 +148,22 @@ class Model {
             $values[]="'$v'";
         }
         if (isset($data->$key) && !empty($data->$key)){
-            $sql = 'UPDATE '.$this->table.' SET '.implode(',',$fields).', modif = NOW()'.' WHERE '.$key.'=:'.$key; 
+            //$sql = 'UPDATE '.$this->table.' SET '.implode(',',$fields).', modif = NOW()'.' WHERE '.$key.'=:'.$key; 
+            $sql = 'UPDATE '.$this->table.' SET '.implode(',',$fields).' WHERE '.$key.'=:'.$key; 
             //debug($sql);
             
             $action = 'update';
         }else{
             if (isset($data->$key)) {unset($data->$key);}
         //$sql = 'INSERT INTO '.$this->table.' SET '.implode(',',$fields).', modif = NOW()'; 
-        $sql = 'INSERT INTO '.$this->table.' ('.implode(',',$champs).' ,modif)  VALUES ('.implode(',',$values).', NOW())';
-        $action = 'insert';
+        //$sql = 'INSERT INTO '.$this->table.' ('.implode(',',$champs).' ,modif)  VALUES ('.implode(',',$values).', NOW())';
+            if($key != 'id'){
+                $champs[] = $key;
+                $values[] = "'$this->id'";
+            }
+            $sql = 'INSERT INTO '.$this->table.' ('.implode(',',$champs).') VALUES ('.implode(',',$values).') RETURNING '.$key;
+            $action = 'insert';
+            //debug($sql);die();
         }
         //debug($data);
         //debug($sql);
@@ -163,8 +172,11 @@ class Model {
             $pre->execute($d);
         }elseif($action == 'insert'){
     
-            $pre->execute();
-            $this->id = $this->db->lastInsertId();
+            if($pre->execute()){
+                //$this->id = $this->db->lastInsertId();
+                $this->id = $pre->fetchColumn();
+                return $this->id;
+            }
         }
        
         return true;

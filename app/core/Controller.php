@@ -65,6 +65,13 @@ class Controller{
         $this->render('/error/404');
         die();
     }
+
+    //Afficher un message à l'utilisateur
+    public function message($message){
+        $this->set('message',$message);
+        $this->render('/error/message');
+        die();
+    }
     
     //permet d'appeler un controller dans une view
     public function request($controller,$action){
