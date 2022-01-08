@@ -6,6 +6,9 @@
     <div>
         <h3> <?php echo $page->titre ?> </h3>
     </div>
+    <div>
+        <img src="<?php echo $page->url ?>" alt="Chargement de l'image..."/>
+    </div>
     <p> <?php echo $page->typeannonce;  ?> <br>
         <?php echo $page->typebien;  ?> <br>
         <?php echo $page->prix; ?> <br>

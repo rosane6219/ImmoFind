@@ -78,32 +78,7 @@ class BienController extends Controller{
         $d['id'] = '';
         if($this->request->data){
             //if($this->Bien->validates($this->request->data)){
-
-                $validExtensions = array('.jpg', '.jpeg', '.gif', '.png');
-                if($_FILES['image']['error'] > 0) {
-                    $this->Session->setFlash(' Une erreur est survenue lors du transfert. ','ECHEC');
-                    header("Refresh:0");
-                }
-
-                $fileName = $_FILES['image']['name'];
-                $fileExt = '.'. strtolower(substr(strrchr($fileName, '.'), 1));
-
-                if(!in_array($fileExt, $validExtensions)){
-                    $this->Session->setFlash(' Le fichier n\'est pas une image. ','ECHEC');
-                    header("Refresh:0");
-                }
-
-                $tmpName = $_FILES['image']['tmp_name'];
-                $uniqueName = md5(uniqid(rand(), true));
-                $fileName = "uploads/". $uniqueName . $fileExt;
-                
-                if (!file_exists('uploads')) {
-                    mkdir('uploads', 0777, true);
-                }
-                
-                $result = move_uploaded_file($tmpName, $fileName);
-
-                if($result){
+                if($fileName = uploadImage($_FILES['image'])){
                     $this->request->data->url = $fileName;
                     $this->request->data->slug = str_replace('--','-',str_replace(' ','-',preg_replace("/[^a-zA-Z 0-9]+/","",strtolower($this->request->data->titre))));
                     $this->request->data->modif = date("Y-m-d");
