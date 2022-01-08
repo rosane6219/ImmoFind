@@ -49,7 +49,7 @@
             </ul>
         </div>
     </div>
-    <?php debug($b);?>
+   
 
 
 
