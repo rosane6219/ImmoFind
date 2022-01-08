@@ -84,7 +84,7 @@
             </div>-->
             <?php echo $this->Form->input('image','Image', array('type' => 'file'))?>
             <div class="col">
-                    <button onclick="location.href='./eleveConnection.php'" type="button">Annuler</button> <!--modifier href -->
+                    <button onclick="location.href=''" type="button">Annuler</button> <!--modifier href -->
             </div>
             <div class="action">
                     <input type="submit"  value="Valider"> <!-- modifier action form -->

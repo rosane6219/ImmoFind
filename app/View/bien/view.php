@@ -7,7 +7,7 @@
         <h3> Titre : <?php echo $page->titre ?> </h3>
     </div>
     <div>
-        <img src="<?php echo $page->url ?>" alt="Chargement de l'image..."/>
+        <img src="<?php echo pathinfo($_SERVER['HTTP_REFERER'], PATHINFO_DIRNAME)."/{$page->url}";?>" alt="Chargement de l'image..."/>
     </div>
     <p> Type d'annonce : <?php echo $page->typeannonce;  ?> <br>
         Type du bien : <?php echo $page->typebien;  ?> <br>
@@ -31,6 +31,8 @@
             document.getElementById("btnImprime").style.display = "block";
         }
     </script>
+    
+   
 
     <!--a id="btnImprime" onclick="printPdf(<?php $_SERVER['PATH_INFO']?>)"> Impression </a--> 
         <button id="btnImprime" onclick="printPdf(<?php $_SERVER['PATH_INFO']?>)"> Imprimer </button> 

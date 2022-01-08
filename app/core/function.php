@@ -14,18 +14,18 @@ function debug($var){
     }
 } 
 
-function uploadImage($file){
+function uploadImage($file, $error){
     $validExtensions = array('.jpg', '.jpeg', '.gif', '.png');
                 if($_FILES['image']['error'] > 0) {
-                    $this->Session->setFlash(' Une erreur est survenue lors du transfert. ','ECHEC');
+                    $error = " Une erreur est survenue lors du transfert.";
                     return null;
                 }
 
                 $fileName = $_FILES['image']['name'];
-                $fileExt = '.'. strtolower(substr(strrchr($fileName, '.'), 1));
+                $fileExt = pathinfo($fileName, PATHINFO_EXTENSION);
 
                 if(!in_array($fileExt, $validExtensions)){
-                    $this->Session->setFlash(' Le fichier n\'est pas une image. ','ECHEC');
+                    $error = " Le fichier n'est pas une image";
                     return null;
                 }
 
@@ -41,4 +41,12 @@ function uploadImage($file){
 
                 if($result) return $fileName;
                 else return null;
+}
+
+function downloadImage($url){
+    $fileExt = pathinfo($url, PATHINFO_EXTENSION);
+    header('Content-type: image/'.$fileExt);
+    //$image=file_get_contents($url);
+    //$response = '<img src="'.$url.'" alt="Chargement de l\'image"';
+    return file_get_contents($url);
 }
