@@ -20,9 +20,6 @@ class BienController extends Controller{
         $this->set($d);
     }
     
-    public function search(){
-        $this->render('recherche');
-    }
 
     public function view($id){
         $this->loadModel('Bien');
@@ -43,6 +40,23 @@ class BienController extends Controller{
         ));//select *
         $this->set($d);
         
+    }
+
+    function search(){
+        if($this->request->data){
+            $this->loadModel('Bien');
+            //$data = $this->request->data;
+            $data = array();
+            foreach($this->request->data as $k=>$v){
+               $data[$k] = $v;
+            }
+            debug($data);
+            return  $this->Bien->find($data);
+           
+            
+        }else{
+            echo 'Rien trouvé';
+        }
     }
  
     /**
@@ -78,7 +92,8 @@ class BienController extends Controller{
         $d['id'] = '';
         if($this->request->data){
             //if($this->Bien->validates($this->request->data)){
-                if($fileName = uploadImage($_FILES['image'])){
+                $error = "";
+                if($fileName = uploadImage($_FILES['image'], $error)){
                     $this->request->data->url = $fileName;
                     $this->request->data->slug = str_replace('--','-',str_replace(' ','-',preg_replace("/[^a-zA-Z 0-9]+/","",strtolower($this->request->data->titre))));
                     $this->request->data->modif = date("Y-m-d");
@@ -86,6 +101,8 @@ class BienController extends Controller{
                     $this->Session->setFlash(' le bien a été sauvegardé','SUCCES');
                     $id = $this->Bien->id;
                     //}else { $this->Session->setFlash(' Veuillez bien remplir tt les champs ','ECHEC');}
+                } else {
+                    $this->Session->setFlash($error,'ECHEC');
                 }
         }else{
             if($id){

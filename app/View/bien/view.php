@@ -7,7 +7,7 @@
         <h3> <?php echo $page->titre ?> </h3>
     </div>
     <div>
-        <img src="<?php echo $_SERVER['SERVER_NAME'].'/image/download/'.$page->url ?>" alt="Chargement de l'image..."/>
+        <img src="<?php echo 'http://'.$_SERVER['SERVER_NAME'].Router::url('image/download/'.$page->url) ?>" alt="Chargement de l'image..."/>
     </div>
     <p> <?php echo $page->typeannonce;  ?> <br>
         <?php echo $page->typebien;  ?> <br>
@@ -32,7 +32,7 @@
         }
     </script>
     
-    <a id="btnImprime" onclick="printPdf(<?php $_SESSION['PATH_INFO']?>)"> Impression </a> 
+    <a id="btnImprime" onclick="printPdf(<?php $_SERVER['PATH_INFO']?>)"> Imprimer</a> 
 
     <!-- script de la fonction pour impression -->
     
