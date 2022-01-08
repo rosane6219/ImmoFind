@@ -22,7 +22,7 @@ function uploadImage($file){
                 }
 
                 $fileName = $_FILES['image']['name'];
-                $fileExt = '.'. strtolower(substr(strrchr($fileName, '.'), 1));
+                $fileExt = pathinfo($fileName, PATHINFO_EXTENSION);
 
                 if(!in_array($fileExt, $validExtensions)){
                     $this->Session->setFlash(' Le fichier n\'est pas une image. ','ECHEC');
@@ -41,4 +41,10 @@ function uploadImage($file){
 
                 if($result) return $fileName;
                 else return null;
+}
+
+function downloadImage($url){
+    $fileExt = pathinfo($url, PATHINFO_EXTENSION);
+    header('Content-type: image/'.$fileExt);
+    echo readfile($url);
 }

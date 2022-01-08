@@ -35,6 +35,7 @@ Router::connect('logout','user/logout');
 Router::connect('panier/:id', 'panier/index/id:([0-9]+)');
 Router::connect('panier/add/:userid-:bienid', 'panier/add/userid:([0-9]+)/bienid:([0-9]+)');
 Router::connect('panier/delete/:id', 'panier/delete/id:([0-9]+)');
+Router::connect('image/download/:url', 'image/download/url:([a-zA-Z.0-9\-]+)');
 
 
 
