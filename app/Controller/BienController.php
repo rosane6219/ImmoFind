@@ -31,6 +31,7 @@ class BienController extends Controller{
         }else{
             
         }
+        //$image_to_display = downloadImage($d['page']->url);
         //print_r($test);
         //$this->set('test',$test);
         $d['pages']= $this->Bien->find(array(

@@ -46,5 +46,7 @@ function uploadImage($file, $error){
 function downloadImage($url){
     $fileExt = pathinfo($url, PATHINFO_EXTENSION);
     header('Content-type: image/'.$fileExt);
-    echo file_get_contents($url);
+    //$image=file_get_contents($url);
+    //$response = '<img src="'.$url.'" alt="Chargement de l\'image"';
+    return file_get_contents($url);
 }
