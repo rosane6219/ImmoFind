@@ -52,7 +52,7 @@ class Controller{
             $file = ROOT.DS.'Model'.DS.$name.'.class.php';
             require_once($file);
             $this->$name = new $name();
-            if(isset($this->$name->form)){
+            if(isset($this->Form)){
                 $this->$name->Form = $this->Form;
             }
         }else{

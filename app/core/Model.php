@@ -8,7 +8,7 @@ class Model {
     public $primarykey = 'id';
     public $id;
     public $errors = array();
-    public $form;
+    public $Form;
 
     public function __construct()
     {   
@@ -47,6 +47,35 @@ class Model {
        //echo "BDD chargéé et bien connetée";
       
     }
+
+    public function validates($data){
+        $errors = array();
+        foreach($this->validate as $k=>$v){
+            if (!isset($data->$k)){
+                $errors[$k] = $v['message'];
+            }else{
+                if($v['rule'] == 'noEmpty')  {
+                    if(empty($data->$k)){
+                       $errors[$k] = $v['message'];
+                    }
+                }elseif($v['rule'] == 'isNumeric'){
+                    if(!is_numeric($data->$k)){
+                       $errors[$k] = $v['message'];
+                    }
+                }elseif(!preg_match('/^'.$v['rule'].'$/',$data->$k)){
+                   $errors[$k] = $v['message'];
+                }
+            }
+        }
+        $this->errors = $errors;
+        if(isset($this->Form)){
+            $this->Form->errors = $errors;
+        }
+        if (empty($errors)){
+            return true;
+        }
+        return false;
+   }
 
     //******************SEARCH*******************//
     public function find($req){// $req = null

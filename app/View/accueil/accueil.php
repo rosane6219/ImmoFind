@@ -11,18 +11,6 @@
 </head>
 
 <body>
-    <div id="banderolle">
-        <div class="images">
-            <!-- ici il faut choisir les images souhaitées /+\ il faudra egalment voir comment faire la redirection avec les liens -->
-            <a href="https://www.google.com/"><img src="../image/contact-us.png" alt="contact"></a>
-            <img src="../image/agence.png" alt="agence">
-            <img src="../image/bien1.jpg" alt="bien 1">
-            <img src="../image/bien2.jpg" alt="bien 2">
-        </div>
-    </div>
-
-
-
     <div>
         <p id="laUne">Les nouveautés de notre agence</p>
         <h1>Nos Biens</h1>
@@ -51,5 +39,19 @@
 
 
 </body>
-
+<footer>
+<div id="banderolle" style="margin: auto; width: 50%; height: 350px">
+        <div>
+            <!-- ici il faut choisir les images souhaitées /+\ il faudra egalment voir comment faire la redirection avec les liens -->
+            <?php 
+                while(empty($page->url)){
+                    $page = $pages[array_rand($pages)];
+                }
+                $arrayUrl = explode('/', pathinfo($_SERVER['HTTP_REFERER'], PATHINFO_DIRNAME));
+                $imageUrl = $arrayUrl[0].'//'.$arrayUrl[2].'/'.BASE_URL.'/'.$page->url;
+                echo '<a href="'.Router::url("bien/view/id:$page->id/slug:$page->slug").'"><img src="'.$imageUrl.'" alt="Chargement de l\'image..." /></a>'
+            ?>
+        </div>
+    </div>
+</footer>
 </html>

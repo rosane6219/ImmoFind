@@ -1,7 +1,7 @@
 <div>
     <tr>
         <td> Liste des collaborateurs : en total <?php echo $total?></td>
-        <td><a href="<?php echo Router::url('admin/colabo/edit') ?>">Créer un collaborateur</a></td>
+        <td><a href="<?php echo Router::url('admin/collabo/edit') ?>">Créer un collaborateur</a></td>
     </tr>
    
 </div>
