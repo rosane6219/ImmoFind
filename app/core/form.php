@@ -3,6 +3,7 @@ class Form
 {
 
     public $controller;
+    public $errors;
 
     public function __construct($controller)
     {
@@ -11,7 +12,7 @@ class Form
 
     public function input($name, $label, $options = array())
     {
-        $error = false;
+        $errors = false;
         $classError = '';
         if(isset($this->errors[$name])){
             $errors = $this->errors[$name];
@@ -52,7 +53,7 @@ class Form
         elseif($options['type'] == 'file'){
             $html .= '<input type="file" id="input_' . $name . '" name="' . $name . '" value="' . $value . '" ' . $attr . '>';
         }
-        if($error){
+        if($errors){
             $html .= '<span >'.$errors.'</span>';
         }
         $html .= '</div></div>';

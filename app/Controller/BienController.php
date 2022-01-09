@@ -121,19 +121,21 @@ class BienController extends Controller
         $this->loadModel('Bien');
         $d['id'] = '';
         if ($this->request->data) {
-            //if($this->Bien->validates($this->request->data)){
-            $error = "";
-            if ($fileName = uploadImage($_FILES['image'], $error)) {
-                $this->request->data->url = $fileName;
-            } else {
-                $this->Session->setFlash($error, 'ECHEC');
+            if($this->Bien->validates($this->request->data)){
+                $error = "";
+                if ($fileName = uploadImage($_FILES['image'], $error)) {
+                    $this->request->data->url = $fileName;
+                } else {
+                    $this->Session->setFlash($error, 'ECHEC');
+                }
+                $this->request->data->slug = str_replace('--', '-', str_replace(' ', '-', preg_replace("/[^a-zA-Z 0-9]+/", "", strtolower($this->request->data->titre))));
+                $this->request->data->modif = date("Y-m-d");
+                $this->Bien->save($this->request->data);
+                $this->Session->setFlash(' le bien a été sauvegardé', 'SUCCES');
+                $id = $this->Bien->id;
+            }else { 
+                $this->Session->setFlash(' Merci de corriger vos erreurs ','ECHEC');
             }
-            $this->request->data->slug = str_replace('--', '-', str_replace(' ', '-', preg_replace("/[^a-zA-Z 0-9]+/", "", strtolower($this->request->data->titre))));
-            $this->request->data->modif = date("Y-m-d");
-            $this->Bien->save($this->request->data);
-            $this->Session->setFlash(' le bien a été sauvegardé', 'SUCCES');
-            $id = $this->Bien->id;
-            //}else { $this->Session->setFlash(' Veuillez bien remplir tt les champs ','ECHEC');}
 
         } else {
             if ($id) {
