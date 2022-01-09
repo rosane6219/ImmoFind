@@ -10,20 +10,16 @@
     
 <h2>Editer un partentaire :</h2>
     
-    <form action="<?php echo Router::url('admin/partner/edit/'.$id)?>" method="post">
+    <form action="<?php echo Router::url('admin/partner/edit/'.$id)?>" method="post" enctype="multipart/form-data">
     <?php echo $this->Form->input('id','hidden');?>
         <div class="row">
            
             <?php echo $this->Form->input('nom','Nom')?>
             
             <?php echo $this->Form->input('site','Site')?>
-            <div class="col">
-                <div class="form-group">
-                    
-                    <label>image</label> 
-                    <input type="text" name="url">
-                </div>
-            </div>
+           
+            <?php echo $this->Form->input('image','Image', array('type' => 'file'))?>
+            
             <div class="col">
                     <button onclick="location.href='./eleveConnection.php'" type="button">Annuler</button> <!--modifier href -->
             </div>
