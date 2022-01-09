@@ -29,7 +29,8 @@ class Controller{
         require($view);
         $content_for_layout = ob_get_clean();
         ob_start();
-        require ROOT.DS.'webroot'.DS.'css'.DS.'main.css';
+        //require ROOT.DS.'webroot'.DS.'css'.DS.'style.css';
+        require ROOT.DS.'webroot'.DS.'css'.DS.'bootstrap.min.css';
         
         //require ROOT.DS.'View'.DS.'css'.DS.'main.css';
         $style_for_content = ob_get_clean();

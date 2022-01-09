@@ -1,38 +1,31 @@
 body {
-  /* la css du body est a revoir, la c'est comme la video */
   background-color: rgb(235, 233, 233);
 }
 
-/*element de la page d'accueil*/
-#boutonAcceuil {
-  text-align: center;
-}
+/* --- partie AGENCE --- */
 
-#aide {
-  position: bottom;
-  text-align: center;
-}
-/*sauf la banderolle qui a sa propre css*/
-
-/*element de la page agence*/
+/*zone de l'id="boutonAgence"*/
 #boutonAgence {
   text-align: left;
   position: relative;
   left: 10px;
 }
 
+/*zone de la class="imageAgence"*/
 .imageAgence {
-  position: relative;
-  top: 0;
-  right: 0;
+  float: right;
 }
 
+/*zone de l'id="textAgence"*/
 #textAgence {
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  /*height: 100vh;*/
 }
 
+/* --- partie AGCCUEIL --- */
+
+/*zone de l'id="banderole"*/
 #banderolle {
   width: 600px;
   overflow: hidden;
@@ -69,4 +62,15 @@ body {
   100% {
     transform: translateX(0); /*image 1*/
   }
+}
+
+/*partie id="boutonAccueil"*/
+#boutonAcceuil {
+  text-align: center;
+}
+
+/*partie id="aide"*/
+#aide {
+  position: bottom;
+  text-align: center;
 }
