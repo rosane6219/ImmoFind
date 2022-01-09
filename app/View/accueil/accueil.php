@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <div>
+    <div class="container">
         <p id="laUne">Les nouveautés de notre agence</p>
         <h1>Nos Biens</h1>
         <div class="row" id="myTopnav">
