@@ -12,7 +12,8 @@
 
     <h2>Mon panier</h2>
     <!-- une liste avec les biens recupere dans la table -->
-    <div class="" id="myTopnav">
+    <div class="row" id="myTopnav">
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
             <ul>
                 <?php foreach ($panier as $bien) : ?>
                     <li>
@@ -31,7 +32,7 @@
                     </li>
                 <?php endforeach; ?>
             </ul>
-            </a>
         </div>
+    </div>
 </body>
 </html>
