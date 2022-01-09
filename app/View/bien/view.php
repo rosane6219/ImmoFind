@@ -7,7 +7,7 @@
         <h3> Titre : <?php echo $page->titre ?> </h3>
     </div>
     <div>
-        <img src="<?php echo pathinfo($_SERVER['HTTP_REFERER'], PATHINFO_DIRNAME)."/{$page->url}";?>" alt="Chargement de l'image..."/>
+        <img style="<?php if(empty($page->url)) echo 'display: none' ?>" src="<?php echo pathinfo($_SERVER['HTTP_REFERER'], PATHINFO_DIRNAME)."/{$page->url}";?>" alt="Chargement de l'image..."/>
     </div>
     <p> Type d'annonce : <?php echo $page->typeannonce;  ?> <br>
         Type du bien : <?php echo $page->typebien;  ?> <br>

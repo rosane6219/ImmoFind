@@ -23,7 +23,7 @@ class Form
             $value = $this->controller->request->data->$name;
         }
         if ($label == 'hidden') {
-            return '<input type="hidden" name="' . $name . '" value="' . $value . '" >';
+            return '<input type="hidden" name="' . $name . '" value="' . $value . '"'.' id="'.$name .'" >';
         }
         $html = '<div class="'.$classError.'">
                         <div class="form-group">

@@ -83,12 +83,16 @@ class Model {
             }else{
                 $cond = array();
                 foreach($req['condition'] as $k=>$v){
-                    if (!is_numeric($v)){
+                    if (!is_numeric($v) || $k == 'codepostal'){
                         $v= $this->db->quote($v);
                     }
                    $cond[] = "$k=$v";
                 }
-                $sql .= implode(' AND ',$cond);
+                if(isset($req['union']) && $req['union']){ // = Si $req['union'] existe et qu'il est à true
+                    $sql .= implode(' OR ',$cond);
+                } else {
+                    $sql .= implode(' AND ',$cond);
+                }
             }   
         }
         if (isset($req['orderby'])){//ordre compte fait attention à comment tu mets les attributs
@@ -183,4 +187,5 @@ class Model {
         //$pre->execute();
        
     }
+
 }

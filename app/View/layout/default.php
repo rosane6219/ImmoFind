@@ -20,7 +20,7 @@
     <div id="boutonAcceuil">
         <a href="<?php echo Router::url("accueil/index");?>">Accueil</a> &nbsp;
         <a href="<?php echo Router::url("agence/agence");?>">Notre agence</a> &nbsp;
-        <a href="<?php echo Router::url("bien/search");?>">Recherche</a> &nbsp;
+        <a href="<?php echo Router::url("bien/search");?>">Liste des biens</a> &nbsp;
         <a href="<?php if(!isset($_SESSION['User'])) echo Router::url("user/connexion"); else echo Router::url("user/logout");?>">
             <?php 
                 if(!isset($_SESSION['User'])) echo 'Se connecter';

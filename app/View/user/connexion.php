@@ -19,16 +19,13 @@
         <!--input type="password" name="psw"/-->
         <?php echo $this->Form->input('pass','Mot de passe',array('type'=> 'password'))?>
         <br><br>
-        <!--div class="admin">
-            <label>Je suis administrateur</label> 
-            <input type="checkbox" name="iAmAdmin">
-        </div-->
+      
         <br>
         <div class="action">
         <input type="submit" name="connexion" value="Se connecter">
         </div>
     </form>
-    <!-- <button onclick="location.href='../../accueil.html'" type="button">Home</button> -->
+    
     <br>
     <button onclick="location.href='../../accueil.php'" type="button">Home</button> <!-- href a modifier --> 
     <a href="<?php echo Router::url("accueil/index");?>" title=""> Home</a>

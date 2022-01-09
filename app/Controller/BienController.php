@@ -31,33 +31,28 @@ class BienController extends Controller{
         }else{
             
         }
-        //$image_to_display = downloadImage($d['page']->url);
-        //print_r($test);
-        //$this->set('test',$test);
-        $d['pages']= $this->Bien->find(array(
-            'orderby' => 'modif',
-            'order' => 'DESC',
-            'limit' => '10',
-        ));//select *
+        //$image_to_display = downloadImage($d['page']->url); 
         $this->set($d);
         
     }
 
     function search(){
+        $this->loadModel('Bien');
         if($this->request->data){
-            $this->loadModel('Bien');
             //$data = $this->request->data;
+            unset($this->request->data->submit);
             $data = array();
             foreach($this->request->data as $k=>$v){
-               $data[$k] = $v;
+                if(!empty($v)) $data[$k] = $v;
             }
-            debug($data);
-            return  $this->Bien->find($data);
-           
-            
+            $d['pages']= $this->Bien->find(array(
+                'condition' => $data
+            ));
+            //$d['res'] = $this->Bien->cherche($data);
         }else{
-            echo 'Rien trouvé';
+            $d['pages']= $this->Bien->find(array()) ;
         }
+        $this->set($d);
     }
  
     /**
@@ -87,8 +82,9 @@ class BienController extends Controller{
     }
 
    
-
+    /*
     public function admin_edit($id=null){
+        debug($_GET);
         $this->loadModel('Bien');
         $d['id'] = '';
         if($this->request->data){
@@ -98,7 +94,7 @@ class BienController extends Controller{
                     $this->request->data->url = $fileName;
                     $this->request->data->slug = str_replace('--','-',str_replace(' ','-',preg_replace("/[^a-zA-Z 0-9]+/","",strtolower($this->request->data->titre))));
                     $this->request->data->modif = date("Y-m-d");
-                    $this->Bien->save($this->request->data);
+                    //$this->Bien->save($this->request->data);
                     $this->Session->setFlash(' le bien a été sauvegardé','SUCCES');
                     $id = $this->Bien->id;
                     //}else { $this->Session->setFlash(' Veuillez bien remplir tt les champs ','ECHEC');}
@@ -111,6 +107,34 @@ class BienController extends Controller{
                     'condition' => array('id' => $id)
                 ));
                 $d['id'] = $id;
+            }
+        }
+        $this->set($d);
+    }*/
+
+    public function admin_edit($id=null){
+        $this->loadModel('Bien');
+        $d['id'] = '';
+        if($this->request->data){
+            //if($this->Bien->validates($this->request->data)){
+                $error = "";
+                if($fileName = uploadImage($_FILES['image'], $error)){
+                    $this->request->data->url = $fileName;}
+                    $this->request->data->slug = str_replace('--','-',str_replace(' ','-',preg_replace("/[^a-zA-Z 0-9]+/","",strtolower($this->request->data->titre))));
+                    $this->request->data->modif = date("Y-m-d");
+                    $this->Bien->save($this->request->data);
+                    $this->Session->setFlash(' le bien a été sauvegardé','SUCCES');
+                    $id = $this->Bien->id;
+                    //}else { $this->Session->setFlash(' Veuillez bien remplir tt les champs ','ECHEC');}
+                 
+        }else{
+            if($id){
+                $this->request->data = $this->Bien->findFirst(array(
+                    'condition' => array('id' => $id)
+                ));
+                $d['id'] = $id;
+            }else {
+                $this->Session->setFlash('$error','ECHEC');
             }
         }
         $this->set($d);

@@ -8,7 +8,7 @@ class Admin extends User{
     }
     public function Add(){}
     public function Modify(){}
-    public function Delete(){}
+    public function Deletee(){}
     public function EditLink(){}
 }
 
