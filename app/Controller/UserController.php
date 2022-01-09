@@ -36,15 +36,23 @@ class UserController extends Controller{
         if($this->request->data){
             $this->loadModel('User');
             $data = $this->request->data;
-            $data->pass = sha1($data->pass);
-            $data->admin = 0;
-            $id = $this->User->save($data);
-            $this->loadModel('Panier');
-            $panier = new stdClass();
-            $panier->id_client = $id;
-            $this->Panier->save($panier);
-            $this->Session->setFlash(' Inscription effectuée avec succès ! Vous pouvez maintenant vous connecter.','SUCCES');
-            $this->redirect('accueil/index');
+            if(empty($this->User->find(array('condition' => array('mail' => $data->mail))))){
+                if($this->User->validates($data)){
+                    $data->pass = sha1($data->pass);
+                    $data->admin = 0;
+                    $id = $this->User->save($data);
+                    $this->loadModel('Panier');
+                    $panier = new stdClass();
+                    $panier->id_client = $id;
+                    $this->Panier->save($panier);
+                    $this->Session->setFlash(' Inscription effectuée avec succès ! Vous pouvez maintenant vous connecter.','SUCCES');
+                    $this->redirect('accueil/index');
+                } else {
+                    $this->Session->setFlash(' Merci de corriger vos erreurs ','ECHEC');
+                }
+            } else {
+                $this->Session->setFlash(' Compte déjà existant. Veuillez choisir une adresse mail différente.','ECHEC');
+            }
         }
     }
 }

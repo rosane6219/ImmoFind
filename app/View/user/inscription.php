@@ -20,7 +20,7 @@
 
             <?php echo $this->Form->input('mail', 'Adresse e-mail ') ?>
 
-            <?php echo $this->Form->input('pass', 'Mot de passe ') ?>
+            <?php echo $this->Form->input('pass', 'Mot de passe ', array('type' => 'password')) ?>
 
             <br>
             <div class="action">

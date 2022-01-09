@@ -62,6 +62,30 @@ class Model {
                     if(!is_numeric($data->$k)){
                        $errors[$k] = $v['message'];
                     }
+                }elseif($v['rule'] == 'isStrong'){
+                    if (strlen($data->$k) < 8) {
+                        $errors[$k] = $v['message'];
+                    } 
+                }elseif($v['rule'] == 'notShort'){
+                    if (strlen($data->$k) < 8) {
+                        $errors[$k] = $v['message'];
+                    }   
+                }elseif($v['rule'] == 'hasNumber'){
+                    if (!preg_match("#[0-9]+#", $data->$k)) {
+                        $errors[$k] = $v['message'];
+                    } 
+                }elseif($v['rule'] == 'hasLetter'){
+                    if (!preg_match("#[a-zA-Z]+#", $data->$k)) {
+                        $errors[$k] = $v['message'];
+                    }  
+                }elseif($v['rule'] == 'hasLower'){
+                    if (!preg_match("#[a-z]+#", $data->$k)) {
+                        $errors[$k] = $v['message'];
+                    }  
+                }elseif($v['rule'] == 'hasCapital'){
+                    if (!preg_match("#[A-Z]+#", $data->$k)) {
+                        $errors[$k] = $v['message'];
+                    }  
                 }elseif(!preg_match('/^'.$v['rule'].'$/',$data->$k)){
                    $errors[$k] = $v['message'];
                 }
