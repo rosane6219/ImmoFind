@@ -15,9 +15,9 @@
         <h1>Nos Biens</h1>
         <div class="row" id="myTopnav">
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                <ul>
+                
                     <?php foreach ($pages as $b) : ?>
-                        <li>
+                        
                             <h2> <?php echo $b->titre; ?></h2>
 
                             <?php echo $b->typebien; ?> <br>
@@ -29,9 +29,9 @@
                                 <?php if (isset($_SESSION['User'])) echo 'Ajouter au panier'; ?>
                             </a>
                             <a href="<?php echo Router::url("bien/view/id:$b->id/slug:$b->slug"); ?>" title=""> Lire la suite</a>
-                        </li>
+                        
                     <?php endforeach; ?>
-                </ul>
+                
             </div>
         </div>
     </div>
