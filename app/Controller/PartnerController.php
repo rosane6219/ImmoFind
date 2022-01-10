@@ -43,8 +43,6 @@ class PartnerController extends Controller
         //$this->set('test',$test);
         $d['pages'] = $this->Partenaire->find(array(
             'fields' => 'id,site ',
-            //'limit' => $nb*($this->request->page),
-
         )); //select 
         $d['total'] = $this->Partenaire->findCount();
         $d['page'] = ceil($d['total'] / $nb);
@@ -78,7 +76,7 @@ class PartnerController extends Controller
             $this->Session->setFlash(' le contenu a bien été sauvegardé', 'SUCCES');
             $id = $this->Partenaire->id;
             //}else { $this->Session->setFlash(' Veuillez bien remplir tt les champs ','ECHEC');}
-
+    
         } else {
             if ($id) {
                 $this->request->data = $this->Partenaire->findFirst(array(

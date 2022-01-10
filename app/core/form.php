@@ -36,11 +36,11 @@ class Form
             }
         }
         if (!isset($options['type'])) {
-            $html .= '<input type="text" id="input_' . $name . '" name="' . $name . '" value="' . $value . '" ' . $attr . '>';
+            $html .= '<input type="text" class="form-control" id="input_' . $name . '" name="' . $name . '" value="' . $value . '" ' . $attr . '>';
         } elseif ($options['type'] == 'textarea') {
-            $html .= '<textarea id="input_' . $name . '" name="' . $name . '" ' . $attr . '>' . $value . '</textarea>';
+            $html .= '<textarea  class="form-control" id="input_' . $name . '" name="' . $name . '" ' . $attr . '>' . $value . '</textarea>';
         }elseif($options['type'] == 'select'){
-            $html .= '<select id="input_' . $name . '" name="' . $name . '" > <option value="'. $value .'">--Choisir une option--</option>' ;
+            $html .= '<select class="form-select" aria-label="Floating label select example" id="input_' . $name . '" name="' . $name . '" > <option value="'. $value .'">--Choisir une option--</option>' ;
             foreach($options as $k=>$v){
                 if ($k != 'type') {
                     $html .= '<option>'.$v.' </option>';
@@ -48,10 +48,10 @@ class Form
             }
             $html .= '</select>';
         }elseif($options['type'] == 'password'){
-            $html .= '<input type="password" id="input_' . $name . '" name="' . $name . '" value="' . $value . '" ' . $attr . '>';
+            $html .= '<input type="password" class="form-control" id="input_' . $name . '" name="' . $name . '" value="' . $value . '" ' . $attr . '>';
         }
         elseif($options['type'] == 'file'){
-            $html .= '<input type="file" id="input_' . $name . '" name="' . $name . '" value="' . $value . '" ' . $attr . '>';
+            $html .= '<input class="form-control" type="file" id="input_' . $name . '" name="' . $name . '" value="' . $value . '" ' . $attr . '>';
         }
         if($errors){
             $html .= '<span >'.$errors.'</span>';

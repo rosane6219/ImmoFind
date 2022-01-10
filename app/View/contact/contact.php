@@ -7,14 +7,21 @@
     <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
-    
+    <div class="container text-align: center">
+    <br><br><br><br><br><br><br><br><br><br><br><br>
     <h2>Vous pouvez nous contacter aux coordonnées suivantes</h2>
     
     <div>
         <ul>
-            <li><p>+33 791 32 86 56</p></li>
-            <li><p>immo_find@gmail.com</p></li>
+            <br>
+            <li><strong>+33 791 32 86 56</strong></li>
+            <br>    
+            <li><strong>immo_find@gmail.com</strong></li>
         </ul>
     </div>
+    </div>
+  
+    
+   
 </body>
 </html>

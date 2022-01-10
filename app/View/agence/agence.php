@@ -15,12 +15,13 @@
             <li>Accédez à la liste de nos collaborateurs en cliquant <a href="<?php echo Router::url("collabo/index");?>">ici !</a></li>
             <li>Accédez à la liste de nos partenaires en cliquant <a href="<?php echo Router::url("partner/index");?>">ici !</a></li>
         </ul>
-        <div class="imageAgence">
-            <a href="https://www.google.com/"><img src="../image/agimmo.jpg" alt="logo de notre agence"></a>
-        </div>
+        
     </div>
     
-    <div id="textAgence">
+    <div id="textAgence" class="clearfix">
+    <div class="imageAgence">
+            <a href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0T6Qn-1HLUxC13kxEFwKM8FHJduqxyghzMA&usqp=CAU"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0T6Qn-1HLUxC13kxEFwKM8FHJduqxyghzMA&usqp=CAU" class="col-md-6 float-md-end mb-3 ms-md-3" alt="logo de notre agence"></a>
+        </div>
         <p> «Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet,
             adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.
             Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, 

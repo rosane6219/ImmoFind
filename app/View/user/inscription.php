@@ -9,26 +9,28 @@
 </head>
 
 <body>
+    <div class="container">
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <h2>Créez votre compte:</h2>
 
-    <h2>Créez votre compte:</h2>
+            <form action="<?php echo Router::url('user/inscription') ?>" method="post">
+                <div class="row">
+                    <?php echo $this->Form->input('nom', 'Nom ') ?>
 
-    <form action="<?php echo Router::url('user/inscription') ?>" method="post">
-        <div class="row">
-            <?php echo $this->Form->input('nom', 'Nom ') ?>
+                    <?php echo $this->Form->input('prenom', 'Prenom ') ?>
 
-            <?php echo $this->Form->input('prenom', 'Prenom ') ?>
+                    <?php echo $this->Form->input('mail', 'Adresse e-mail ') ?>
 
-            <?php echo $this->Form->input('mail', 'Adresse e-mail ') ?>
+                    <?php echo $this->Form->input('pass', 'Mot de passe ', array('type' => 'password')) ?>
 
-            <?php echo $this->Form->input('pass', 'Mot de passe ', array('type' => 'password')) ?>
-
-            <br>
-            <div class="action">
-                <input type="submit" value="Valider"> <!-- modifier action form -->
-            </div>
+                    <br>
+                    <div class="action">
+                        <input type="submit" value="Valider"> <!-- modifier action form -->
+                    </div>
+                </div>
+            </form>
         </div>
-    </form>
-
+    </div>
 </body>
 
 </html>

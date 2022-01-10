@@ -64,7 +64,16 @@ class Model {
                     }
                 }elseif($v['rule'] == 'isStrong'){
                     if (strlen($data->$k) < 8) {
-                        $errors[$k] = $v['message'];
+                        $errors[$k] = 'Le mot de passe doit contenir au moins 8 charactères.';
+                    } 
+                    if (!preg_match("#[0-9]+#", $data->$k)) {
+                        $errors[$k] = 'Le mot de passe doit contenir au moins un chiffre.';
+                    } 
+                    if (!preg_match("#[a-z]+#", $data->$k)) {
+                        $errors[$k] = 'Le mot de passe doit contenir au moins 1 lettre minuscule.';
+                    }
+                    if (!preg_match("#[A-Z]+#", $data->$k)) {
+                        $errors[$k] = 'Le mot de passe doit contenir au moins 1 lettre majuscule.';
                     } 
                 }elseif($v['rule'] == 'notShort'){
                     if (strlen($data->$k) < 8) {

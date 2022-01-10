@@ -8,12 +8,12 @@
 </head>
 <body>
     
-<h2>Editer l'annonce d'un bien :</h2>
     
     <form action="<?php echo Router::url('admin/bien/edit/'.$id)?>" method="post" enctype="multipart/form-data">
     <?php echo $this->Form->input('id','hidden');?>
-        <div class="row">
-            
+    <div class="container">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <h2>Editer l'annonce d'un bien :</h2>
             <?php echo $this->Form->input('typeannonce','Type d\'annonce ',array('type' => 'select','1' => 'Vente','2' => 'Location'))?>
             
             <?php echo $this->Form->input('typebien','Type de bien ',array('type' => 'select','1' => 'Maison','2' => 'Appartement','3' => 'Studio','4' => 'Chambre'))?>
@@ -29,13 +29,12 @@
             <?php echo $this->Form->input('descrption','Description ',array('type' => 'textarea','rows' => 5,'cols' => 10))?>
            
             <?php echo $this->Form->input('image','Image', array('type' => 'file'))?>
-            <div class="col">
-                    <button onclick="location.href=''" type="button">Annuler</button> <!--modifier href -->
-            </div>
+            <br>
             <div class="action">
                     <input type="submit"  value="Valider"> <!-- modifier action form -->
             </div>
         </div> 
+</div>
     </form>
 
 </body>

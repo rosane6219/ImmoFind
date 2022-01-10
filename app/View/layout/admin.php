@@ -14,20 +14,24 @@
 </head>
 
 <body>
-    
+
     <title> <?php echo isset($title_layout) ? $title_layout : 'ImmoFind'; ?></title>
-    <h3>Administration</h3>
+
     <div id="boutonAcceuil">
-        <a href="<?php echo Router::url("admin/bien/list");?>">Bien</a> &nbsp;
-        <a href="<?php echo Router::url("admin/collabo/list");?>">Collabo</a> &nbsp;
-        <a href="<?php echo Router::url("admin/partner/list");?>">Partenaires</a> &nbsp;
-        <a href="<?php echo Router::url("home");?>">Voir le site</a> &nbsp;
-        <a href="<?php echo Router::url("user/logout");?>">Se déconnecter</a> &nbsp;
+        <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+            <h3>Administration</h3>
+            <p> </p>
+            <a href="<?php echo Router::url("admin/bien/list"); ?>" class="nav-link text-dark">Bien</a> &nbsp;
+            <a href="<?php echo Router::url("admin/collabo/list"); ?>" class="nav-link text-dark">Collaborateurs</a> &nbsp;
+            <a href="<?php echo Router::url("admin/partner/list"); ?>" class="nav-link text-dark">Partenaires</a> &nbsp;
+            <a href="<?php echo Router::url("home"); ?>" class="nav-link text-dark">Voir le site</a> &nbsp;
+            <a href="<?php echo Router::url("user/logout"); ?>" class="nav-link text-dark">Se déconnecter</a> &nbsp;
+        </nav>
     </div>
 
-    <?php echo $this->Session->flash();?>
+    <?php echo $this->Session->flash(); ?>
     <?php echo  $content_for_layout; ?>
-    
+
 </body>
 
 </html>

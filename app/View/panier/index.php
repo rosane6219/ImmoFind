@@ -11,24 +11,20 @@
     <!-- require la connexion !!!!! -->
 
     <h2>Mon panier</h2>
-    <!-- une liste avec les biens recupere dans la table -->
     
     <div class="container">
         <div class="row" id="myTopnav">
-            <?php foreach ($panier as $bien) : ?>
+            <?php foreach ($panier as $b) : ?>
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                    <h2> <?php echo $bien->titre; ?></h2>
-                    <?php
-                    echo $bien->typebien;
-                    echo $bien->prix;
-                    //echo $bien->descrption;
-                    echo $bien->ville;
-                    //echo $bien->codepostal;
-                    // $bien->modif;
-                    ?>
-                    <!--a href="<?php echo BASE_URL . '/bien/view/' . $bien->id ?>" title=""> Lire la suite</a-->
-                    <a href="<?php echo Router::url("panier/delete/id:{$bien->id}");?>" title="">Retirer du panier</a>
-                    <a href="<?php echo Router::url("bien/view/id:{$bien->id}/slug:{$bien->slug}");?>" title=""> Lire la suite</a>
+                <h4>Titre : <?php echo $b->titre; ?></h4>
+                    <strong>Type de bien : </strong><?php echo $b->typebien; ?> <br>
+                    <strong>Prix : </strong><?php echo $b->prix; ?> <br>
+                    <strong>Ville : </strong><?php echo $b->ville; ?> <br>
+                    <strong>Code postal : </strong><?php echo $b->codepostal; ?> <br>
+                   
+                    <a href="<?php echo Router::url("panier/delete/id:{$b->id}");?>" title="">Retirer du panier</a>
+                    <br>
+                    <a href="<?php echo Router::url("bien/view/id:{$b->id}/slug:{$b->slug}");?>" title=""> Lire la suite</a>
                 </div>
             <?php endforeach; ?>            
         </div>

@@ -23,7 +23,6 @@
                         <?php echo $b->typebien; ?> <br>
                         <?php echo $b->prix; ?> <br>
                         <?php echo $b->ville; ?> <br>
-                        <!--a href="<?php echo BASE_URL . '/bien/view/' . $b->id ?>" title=""> Lire la suite</a-->
                         <a href="<?php 
                             if(isset($_SESSION['User'])) echo Router::url("panier/add/userid:{$_SESSION['User']->id}/bienid:{$b->id}"); else echo '#';?>" title="">
                             <?php if(isset($_SESSION['User'])) echo 'Ajouter au panier'; ?>

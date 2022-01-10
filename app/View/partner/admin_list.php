@@ -1,32 +1,47 @@
-<div>
-    <tr>
-        <td> Liste des collaborateurs : en total <?php echo $total?></td>
-        <td><a href="<?php echo Router::url('admin/partner/edit') ?>">Créer un collaborateur</a></td>
-    </tr>
-   
+
+
+<br><br>
+<div class="container">
+<div class="row">
+        <div class="col">
+            <b>Liste des <?php echo $total ?> partenaires</b>
+        </div>
+        <div class="col">
+        <td><a href="<?php echo Router::url('admin/collabo/edit') ?>">Créer un partenaire</a></td>
+        </div>
+
+    </div>
 </div>
+    <br><br>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <strong>ID</strong>
+            </div>
+            <div class="col">
+                <strong> Site</strong>
+            </div>
+            <div class="col">
+                <strong> Actions</strong>
+            </div>
+        </div>
+    </div>
 
 
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Site</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-   
-    <tbody> 
-        <?php foreach($pages as $k=>$v):?>
-            <tr>
-                <td><?php echo $v->id?></td>
-                <td><?php echo $v->site?></td>
-                <td>
-                    <?php  ?>
-                    <a href="<?php echo Router::url('admin/partner/edit/'.$v->id) ?>">modifier</a>
+<div class="container">
+        <?php foreach ($pages as $k => $v) : ?>
+            <div class="row">
+                <div class="col">
+                    <?php echo $v->id ?>
+                </div>
+                <div class="col">
+                    <?php echo $v->site?>
+                </div>
+                <div class="col">
+                <a href="<?php echo Router::url('admin/partner/edit/'.$v->id) ?>">modifier</a>
                     <a onclick="return confirm('Voulez vous vraiment supprimer ce contenu?')" href="<?php echo Router::url('admin/partner/delete/'.$v->id) ;?>">supprimer</a>
-                </td>
-            </tr>
-        <?php endforeach?>
-    </tbody>
-</table>
+                </div>
+            </div>
+        <?php endforeach ?>
+    </div>
